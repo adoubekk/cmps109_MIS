@@ -5,10 +5,25 @@
 
 using namespace std;
 
+string printVector(vector<string> line);
+
 int main(){
    Parser myParser("test.mis");
-   vector<string> nextLine = myParser.getNextLine();
-   cout << nextLine[0]  << nextLine[1] << endl;
-   //nextLine = myParser.getNextLine();
-   //cout << nextLine << endl;
+   vector<string> nextLine;
+   while (myParser.hasNextLine()) {
+		nextLine = myParser.getNextLine();
+		cout << printVector(nextLine) <<endl;
+   }
+}
+
+string printVector(vector<string> line){
+	string result = "[";
+	int n = line.size();
+	//char temp;
+	for (int i = 0; i < n; i++){
+		result += line[i];
+		result += (i < n-1)?(','):(']');
+	}
+	
+	return result;
 }

@@ -8,7 +8,6 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <array>
 
 class Label; //forward declaration
 
@@ -18,6 +17,7 @@ class Parser{
       ~Parser();
       std::vector<std::string> getNextLine();
       void goToLine(Label pos);
+      bool hasNextLine();
    private:
       std::ifstream stream;
 };

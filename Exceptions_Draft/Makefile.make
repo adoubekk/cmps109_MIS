@@ -7,5 +7,5 @@ TestException: ${SRC}
 	g++  ${SRC} -o TestException
 
 clean:
-	rm *Exception*
+	rm -f TestException
 

@@ -2,20 +2,20 @@
 #define ADD_H
 #include <vector>
 
+using namespace std;
+
 class Add{
 private:
-	//std::vector<int> variables; // right now this is <int> should change to <Type> when implemented..
+	vector<int *> variables; // right now this is <int> should change to <Type> when implemented..
 public:
-	std::vector<int> variables; 
+	
 
-	template<class First, class ... rest> Add(First n, rest ... theRest); // recursivly striping the arguments
+	Add(vector<int *> & MIS_Args); // copy the mis_vector
 
-	template<class Last>Add(Last last);
-
-	Add();
+	~Add();
 
 
-	auto doOperation(); // this will make use of the variable vector.
+	void doOperation(); // this will make use of the variable vector.
 
 };
 

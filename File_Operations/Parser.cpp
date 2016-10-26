@@ -33,13 +33,11 @@ vector<string> Parser::getNextLine() {
    stream.get(sb,'\n'); //extract other data
    stream.ignore(1); //skip newline character
    
-   string data = sb.str(); //extract contents of buffer
-   
    //store each token to vector, delimiting by ','
-   int start = 0, len = 0, n = data.length();
+   int start = 0, len = 0, n = sb.str().length();
    for (int i = 0; i < n; i++){
-      if (data[i] == ','){
-         line.push_back(data.substr(start,len));
+      if (sb.str()[i] == ','){
+         line.push_back(sb.str().substr(start,len));
 		 start = i+1;
 		 len = 0;
 	  } else {
@@ -47,7 +45,7 @@ vector<string> Parser::getNextLine() {
 	  }
    }
    
-   line.push_back(data.substr(start,len-1)); //get last token
+   line.push_back(sb.str().substr(start,len-1)); //get last token
   
    return line;
 }

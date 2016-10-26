@@ -16,7 +16,8 @@ class Parser{
       Parser(std::string filename);
       ~Parser();
       std::vector<std::string> getNextLine();
-      void goToLine(Label pos);
+      void goToPos(Label pos);
+	  int getPos();
       bool hasNextLine();
    private:
       std::ifstream stream;

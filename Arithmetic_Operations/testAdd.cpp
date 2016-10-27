@@ -2,12 +2,15 @@
 #include <cstdarg>
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+
+using namespace std;
 
 int main(){
 
 	int* a = new int(5);
 	int* b = new int (6);
-	std::vector<int *> v;
+	vector<int *> v;
 	v.push_back(a);
 	v.push_back(b);
 	Add* AddObject = new Add(v); // create a new Add operation object with a vector of int pointers

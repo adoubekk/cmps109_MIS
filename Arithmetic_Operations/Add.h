@@ -1,10 +1,11 @@
 #ifndef ADD_H
 #define ADD_H
+#include "ArithmeticOperations.h"
 #include <vector>
 
 using namespace std;
 
-class Add{
+class Add : public ArithmeticOperations{
 private:
 	vector<int *> variables; // right now this is <int> should change to <Type> when implemented..
 public:

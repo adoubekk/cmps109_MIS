@@ -1,4 +1,4 @@
-src = Add.cpp testAdd.cpp
+src = Add.cpp Sub.cpp testAdd.cpp
 
 all: Operations
 

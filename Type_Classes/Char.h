@@ -10,7 +10,7 @@ Char.h
 
 using namespace std;
 
-class Char : public Type {
+class Char : public Type<char> {
 private:
 	char value;
 	string name;

@@ -11,7 +11,7 @@ Numeric.h
 
 using namespace std;
 
-class Numeric: public Type{
+class Numeric: public Type<int>{
 private:
 	int number;
 	string name;

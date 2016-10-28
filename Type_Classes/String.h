@@ -10,7 +10,7 @@ String.h
 
 using namespace std;
 
-class String : public Type {
+class String : public Type<string> {
 private:
 	int length;
 	string value;

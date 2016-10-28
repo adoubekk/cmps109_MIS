@@ -11,7 +11,7 @@ Real.h
 
 using namespace std;
 
-class Real: public Type {
+class Real: public Type<double> {
 private:
 	double Number;
 	string name;

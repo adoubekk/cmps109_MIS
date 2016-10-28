@@ -11,6 +11,8 @@ Type.h
 
 using namespace std;
 
+template<class varType>
+
 class Type {
 private:
 public:
@@ -22,11 +24,9 @@ public:
 	~Type();
 
 	// Access Methods
-	template<typename varType>
-	virtual varType getValue() = 0;
+	varType getValue();
 
 	// Manipulation Methods
-	template<typename varType>
-	virtual void setValue( varType value) = 0;
+	void setValue( varType value);
 };
 #endif //!TYPE_H

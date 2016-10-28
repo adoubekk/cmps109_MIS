@@ -50,6 +50,15 @@ vector<string> Parser::getNextLine() {
    return line;
 }
 
+void Parser::goToPos(int pos){
+	stream.clear(); //supposedly C++11 does this automatically, but seekg fails without this call if eof has been reached
+	stream.seekg(pos, stream.beg);
+}
+
+int Parser::getPos(){
+	return stream.tellg();
+}
+
 //returns true if there are more characters to get in the file
 bool Parser::hasNextLine() {
    return (stream.peek() != EOF);

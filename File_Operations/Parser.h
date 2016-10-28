@@ -16,7 +16,7 @@ class Parser{
       Parser(std::string filename);
       ~Parser();
       std::vector<std::string> getNextLine();
-      void goToPos(Label pos);
+      void goToPos(int pos);
 	  int getPos();
       bool hasNextLine();
    private:

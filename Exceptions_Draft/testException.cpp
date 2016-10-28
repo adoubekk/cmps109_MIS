@@ -1,5 +1,4 @@
 #include "ArithmeticException.h"
-#include "Exception.h"
 #include <stdlib.h>
 #include <string>
 #include <iostream>
@@ -12,7 +11,7 @@ int main(){
 		throw(ArithmeticException((string)"Can't add strings"));  // 
 	}
 	catch(ArithmeticException e){
-		e.print();
+		cout << e.GetMessage() << endl;
 	}
 
 }

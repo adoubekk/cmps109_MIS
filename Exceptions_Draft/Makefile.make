@@ -1,5 +1,5 @@
 #havent tested this makefile..
-SRC = Exception.cpp ArithmeticException.cpp testException.cpp
+SRC =  ArithmeticException.cpp testException.cpp
 
 all: TestException
 

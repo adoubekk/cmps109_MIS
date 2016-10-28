@@ -10,17 +10,15 @@ string printVector(vector<string> line);
 int main(){
    Parser myParser("test.mis");
    vector<string> nextLine;
-   int testPos = 0;
    while (myParser.hasNextLine()) {
 		nextLine = myParser.getNextLine();
 		if (nextLine[0].compare("LABEL") == 0) {
-			testPos = myParser.getPos();
-			cout << "Setting label to " << testPos << endl;
+         myParser.setLabel(nextLine[1]);
 		}
 		cout << printVector(nextLine) <<endl;
    }
    
-   myParser.goToPos(testPos);
+   myParser.goToPos("LAB1");
    cout << endl;
    while (myParser.hasNextLine()) {
 		nextLine = myParser.getNextLine();

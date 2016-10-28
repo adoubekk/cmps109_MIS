@@ -50,13 +50,23 @@ vector<string> Parser::getNextLine() {
    return line;
 }
 
-void Parser::goToPos(int pos){
+//go to the position indicated by the label with name
+void Parser::goToPos(string name){
+   int len = labels.size();
+   int pos;
+   for (int i = 0; i < len; i++) {
+      if (name.compare(labels[i].nameOf()) == 0){
+         pos = labels[i].getPosition();
+      }
+   }
 	stream.clear(); //supposedly C++11 does this automatically, but seekg fails without this call if eof has been reached
 	stream.seekg(pos, stream.beg);
 }
 
-int Parser::getPos(){
-	return stream.tellg();
+void Parser::setLabel(string name){
+	int pos = stream.tellg();
+   Label L(pos,name);
+   labels.push_back(L);
 }
 
 //returns true if there are more characters to get in the file

@@ -1,0 +1,42 @@
+#include "Div.h"
+#include <stdlib.h>
+#include <typeinfo>
+#include <string>
+
+using namespace std;
+
+Div::Div(vector<int *> & MIS_Args): variables(MIS_Args){ // copy the arguments into Add object variable vector
+};
+
+
+void Div::doOperation(){
+	int* temp = NULL; // using this to fetch the first argument as the one to change
+	int globalCounter = 0;
+	string type;
+
+	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, int.
+	for( vector<int *>::iterator it = variables.begin(); it != variables.end(); it++){
+		if(globalCounter == 0 ){
+			temp = *it; // set temp to point to the first argument
+			type = typeid(**it).name(); // get type for exception purposes
+		}else{
+			*temp /= **it; // dereference temp and increment it with the next iteration dereferenced
+			if (typeid(**it).name() != type){
+				// throw Arithmetic error
+			}
+		}
+  		globalCounter += 1;
+  		if(globalCounter > 3){
+  			//throw Arithmetic error
+  		}
+	}
+
+	temp = NULL;
+
+};
+
+Div::~Div(){
+	for( vector<int *>::iterator it = variables.begin(); it != variables.end(); it++){
+		*it = NULL;
+	}
+}

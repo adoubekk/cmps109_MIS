@@ -1,9 +1,9 @@
-src = Add.cpp Sub.cpp testOperations.cpp
+src = Add.cpp Sub.cpp Mult.cpp Div.cpp testOperations.cpp
 
 all: Operations
 
 Operations: ${src}
-	g++ -std=c++14 ${src} -o Operations
+	g++  ${src} -o Operations
 
 clean:
 	rm -f Operations

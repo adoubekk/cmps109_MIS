@@ -16,17 +16,10 @@ template<class varType>
 class Type {
 private:
 public:
-	// Constructor-Destructor
-	// Default Constructor
-	Type();
-
-	// Destructor
-	~Type();
-
 	// Access Methods
-	varType getValue();
+	virtual varType getValue() = 0;
 
 	// Manipulation Methods
-	void setValue( varType value);
+	virtual void setValue( varType value) = 0;
 };
 #endif //!TYPE_H

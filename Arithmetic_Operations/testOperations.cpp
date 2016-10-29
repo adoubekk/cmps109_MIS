@@ -7,9 +7,31 @@
 #include <stdlib.h>
 
 using namespace std;
+#include "../Type_Classes/Type.h"
+#include "../Type_Classes/Numeric.h"
 
 int main(){
 
+	Type * myNumeric1 = new Numeric("Num1", 6);
+
+	Type * myNumeric2 = new Numeric("Num1", 4);
+
+	vector<Type *> variables;
+	variables.push_back(myNumeric1);
+	variables.push_back(myNumeric2);
+
+	Add* AddObject = new Add(variables);
+	AddObject->doOperation();
+
+	int a = 0;
+	myNumeric1->getValue(&a);
+
+	cout << a << endl;
+
+
+
+
+    /* this was the testing phase of int pointers instead of Type pointers
 	int* a = new int(5);
 	int* b = new int (6);
 	int* c = new int (30);
@@ -46,7 +68,7 @@ int main(){
 	free(AddObject);
 	free(SubObject);
 	free(MultObject);
-	free(DivObject);
+	free(DivObject);*/
 	
 
 	

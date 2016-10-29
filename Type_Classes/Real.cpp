@@ -15,7 +15,7 @@ Real::~Real() {
 }
 
 void Real::getValue(void * ptr) {
-	double* DPtr = static_cast<int*>(ptr);
+	double* DPtr = static_cast<double*>(ptr);
 	*DPtr = number;
 }
 
@@ -25,8 +25,8 @@ void Real::getType(void * ptr){
 }
 
 void Real::setValue(void * ptr) {
-	double* DPtr = static_cast<int*>(ptr);
-	number = *Dptr;
+	double* DPtr = static_cast<double*>(ptr);
+	number = *DPtr;
 }
 
 

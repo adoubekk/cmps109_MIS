@@ -4,8 +4,8 @@ hechang
 Numeric.h
 */
 
-#ifndef NUMERIC_H
-#define NUMERIC_H
+#ifndef REAL_H
+#define REAL_H
 #include <string>
 #include "Type.h"
 

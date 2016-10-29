@@ -16,13 +16,6 @@ template<class varType>
 class Type {
 private:
 public:
-	// Constructor-Destructor
-	// Default Constructor
-	Type();
-
-	// Destructor
-	~Type();
-
 	// Access Methods
 	virtual varType getValue() = 0;
 

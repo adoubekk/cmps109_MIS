@@ -25,7 +25,7 @@ public:
 	Numeric(string varName, int value);
 
 	// Destructor
-	~Numeric();
+	virtual ~Numeric();
 
 	// Access Methods
 	int getValue();

@@ -7,11 +7,11 @@ using namespace std;
 
 class Add : public ArithmeticOperations{
 private:
-	vector<int *> variables; // right now this is <int> should change to <Type> when implemented..
+	vector<Type *> variables; // right now this is <int> should change to <Type> when implemented..
 public:
 	
 
-	Add(vector<int *> & MIS_Args); // copy the mis_vector
+	Add(vector<Type *> & MIS_Args); // copy the mis_vector
 
 	~Add();
 

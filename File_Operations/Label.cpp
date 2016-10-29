@@ -13,9 +13,6 @@ Label::Label(int pos, string name){
    this->name = name;
 }
 
-Label::~Label(){
-}
-
 int Label::getPosition(){
    return position;
 }

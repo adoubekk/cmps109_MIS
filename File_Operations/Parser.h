@@ -4,6 +4,7 @@
 //MIS Project
 //Reads in .mis files and returns appropriate information to the MIS system
 
+#pragma once
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -15,7 +16,7 @@ class Parser{
       Parser(std::string filename);
       ~Parser();
       std::vector<std::string> getNextLine();
-      void goToPos(std::string name);
+      void goToLabel(std::string name);
       void setLabel(std::string name);
       bool hasNextLine();
    private:

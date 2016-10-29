@@ -23,7 +23,7 @@ public:
 	Char(string varName, char value);
 
 	// Destructor
-	~Char();
+	virtual ~Char();
 
 	// Access Methods
 	Char getValue();

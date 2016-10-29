@@ -19,7 +19,7 @@ string String::getValue()
 
 int String::getLength()
 {
-	return (this->name.length());
+	return (this->value.length());
 }
 
 void String::setValue(string value){

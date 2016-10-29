@@ -25,7 +25,7 @@ public:
 	Real(string varName, double value);
 
 	// Destructor
-	~Real();
+	virtual ~Real();
 
 	// Access Methods
 	double getValue();

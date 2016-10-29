@@ -24,7 +24,7 @@ public:
 	String(string varName, string value);
 
 	// Destructor
-	~String();
+	virtual ~String();
 
 	// Access Methods
 	string getValue();

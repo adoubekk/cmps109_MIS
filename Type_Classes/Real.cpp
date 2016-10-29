@@ -6,6 +6,7 @@ using namespace std;
 Real::Real() {}
 
 Real::Real(string varName, double value) {
+	myType='R';
 	name = varName;
 	number = value;
 }
@@ -13,10 +14,19 @@ Real::Real(string varName, double value) {
 Real::~Real() {
 }
 
-double Real::getValue() {
-	return number;
+void Real::getValue(void * ptr) {
+	double* DPtr = static_cast<int*>(ptr);
+	*DPtr = number;
 }
 
-void Real::setValue(double value) {
-	number = value;
+void Real::getType(void * ptr){
+	char* charPtr = static_cast<char*>(ptr);
+	*charPtr = myType;
 }
+
+void Real::setValue(void * ptr) {
+	double* DPtr = static_cast<int*>(ptr);
+	number = *Dptr;
+}
+
+

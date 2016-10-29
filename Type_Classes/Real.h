@@ -1,38 +1,44 @@
 /*
 Henry Chang
 hechang
-Real.h
+Numeric.h
 */
 
-#ifndef REAL_H
-#define REAL_H
+#ifndef NUMERIC_H
+#define NUMERIC_H
 #include <string>
 #include "Type.h"
 
 using namespace std;
 
-class Real: public Type<double> {
+class Real: public Type{
 private:
-	double Number;
+	double number;
 	string name;
+	char myType;
 public:
 
-	// Constructor-Destructor
+	
+
+    // Constructor-Destructor
 	// Default Constructor
 	Real();
 
-	// Parameterized Constructor with name of Real and value
+	// Parameterized Constructor with name of Numeric and value
 	Real(string varName, double value);
 
 	// Destructor
-	~Real();
+	virtual ~Real();
 
 	// Access Methods
-	double getValue();
+	virtual void getValue(void* ptr);
+
+	virtual void getType(void* ptr);
+	
 
 	// Manipulation Methods
-	void setValue(double value);
+	virtual void setValue(void* value_ptr);
 };
 
-#endif // !REAL_H
+#endif // !NUMERIC_H
 

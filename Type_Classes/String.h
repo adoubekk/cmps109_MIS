@@ -10,28 +10,33 @@ String.h
 
 using namespace std;
 
-class String : public Type<string> {
+class String : public Type {
 private:
 	int length;
 	string value;
 	string name;
+	char myType;
 public:
 	// Constructor-Destructor
 	// Default Constructor
 	String();
 
 	// Parameterized Constructor with name of String and value
-	String(string varName, string value);
+	String(string varName, string value, int size);
 
 	// Destructor
 	~String();
 
 	// Access Methods
-	string getValue();
-	int getLength();
+	virtual void getValue(void * ptr);
+	virtual void getType(void * ptr);
+	virtual int getLength();
+	virtual char getChar(int index);
 
 	// Manipulation Methods
-	void setValue(string value);
+	virtual void setValue(void * ptr);
+
+	virtual void setChar(int index, char c);
 };
 #endif // !STRING_H
 

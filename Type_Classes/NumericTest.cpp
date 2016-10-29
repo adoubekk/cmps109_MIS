@@ -19,11 +19,11 @@ int main(int argc, char* argv[]) {
 	string variable = "testInt";
 
 	num = new Numeric( variable, input );
-	output = num->getValue();
+	/*output = num->getValue();
 	num->setValue(20);
 	cout << output << "\n";
 	output = num->getValue();
 	cout << output << "\n";
 	delete num;
-	return 0;
+	return 0;*/
 }

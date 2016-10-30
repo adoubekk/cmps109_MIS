@@ -25,7 +25,7 @@ public:
 	String(string varName, string value, int size);
 
 	// Destructor
-	~String();
+	virtual ~String();
 
 	// Access Methods
 	virtual void getValue(void * ptr);

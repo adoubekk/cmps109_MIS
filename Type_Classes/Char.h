@@ -24,7 +24,7 @@ public:
 	Char(string varName, char value);
 
 	// Destructor
-	~Char();
+	virtual ~Char();
 
 	// Access Methods
 	virtual void getValue(void * ptr);

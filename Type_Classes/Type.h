@@ -11,15 +11,26 @@ Type.h
 
 using namespace std;
 
-template<class varType>
+
 
 class Type {
 private:
+
 public:
 	// Access Methods
-	virtual varType getValue() = 0;
+
+
+	virtual  void getValue(void * ptr) = 0;
+
+	virtual void getType(void * ptr) = 0;
+
+	//for string only
+	virtual char getChar(int index){};
+	virtual void setChar(int index, char c){};
+	virtual int getLength(){};
 
 	// Manipulation Methods
-	virtual void setValue( varType value) = 0;
+	virtual void setValue( void* value_ptr) = 0;
+
 };
 #endif //!TYPE_H

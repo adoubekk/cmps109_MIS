@@ -1,5 +1,5 @@
 #Makefile for Assignment 2, Problem 2
-SRC = Parser.cpp test_Parser.cpp Label.cpp
+SRC = test_Parser.cpp Parser.cpp Jump.cpp Label.cpp
 
 all: Parser
 

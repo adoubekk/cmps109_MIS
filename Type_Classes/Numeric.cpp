@@ -6,6 +6,7 @@ using namespace std;
 Numeric::Numeric() {}
 
 Numeric::Numeric(string varName, int value){
+	myType = 'N';
 	name = varName;
 	number = value;
 }
@@ -14,10 +15,18 @@ Numeric::Numeric(string varName, int value){
 Numeric::~Numeric(){
 }
 
-int Numeric::getValue() {
-	return number;
+void Numeric::getValue(void * ptr) {
+	int* intPtr = static_cast<int*>(ptr);
+	*intPtr = number;
+
 }
 
-void Numeric::setValue(int value){
-	number = value;
+void Numeric::getType(void * ptr){
+	char* charPtr = static_cast<char*>(ptr);
+	*charPtr = myType;
+}
+
+void Numeric::setValue(void* value_ptr){
+	int* intPtr = static_cast<int*>(value_ptr);
+	number = *intPtr;
 }

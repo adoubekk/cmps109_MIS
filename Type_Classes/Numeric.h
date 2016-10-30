@@ -11,11 +11,14 @@ Numeric.h
 
 using namespace std;
 
-class Numeric: public Type<int>{
+class Numeric: public Type{
 private:
 	int number;
 	string name;
+	char myType;
 public:
+
+	
 
     // Constructor-Destructor
 	// Default Constructor
@@ -28,10 +31,13 @@ public:
 	virtual ~Numeric();
 
 	// Access Methods
-	int getValue();
+	virtual void getValue(void* ptr);
+
+	virtual void getType(void* ptr);
+	
 
 	// Manipulation Methods
-	void setValue(int value);
+	virtual void setValue(void* value_ptr);
 };
 
 #endif // !NUMERIC_H

@@ -10,10 +10,11 @@ Char.h
 
 using namespace std;
 
-class Char : public Type<char> {
+class Char : public Type{
 private:
 	char value;
 	string name;
+	char myType;
 public:
 	// Constructor-Destructor
 	// Default Constructor
@@ -26,9 +27,11 @@ public:
 	virtual ~Char();
 
 	// Access Methods
-	Char getValue();
+	virtual void getValue(void * ptr);
+
+	virtual void getType(void * ptr);
 
 	// Manipulation Methods
-	void setValue(char value);
+	virtual void setValue(void * value);
 };
 #endif // !CHAR_H

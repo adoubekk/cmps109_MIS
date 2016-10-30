@@ -51,7 +51,7 @@ vector<string> Parser::getNextLine() {
 }
 
 //go to the position indicated by the label with name
-void Parser::goToPos(string name){
+void Parser::goToLabel(string name){
    int len = labels.size();
    int pos;
    for (int i = 0; i < len; i++) {

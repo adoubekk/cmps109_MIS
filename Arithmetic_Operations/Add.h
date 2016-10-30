@@ -1,5 +1,6 @@
 #ifndef ADD_H
 #define ADD_H
+#include "../Type_Classes/Type.h"
 #include "ArithmeticOperations.h"
 #include <vector>
 

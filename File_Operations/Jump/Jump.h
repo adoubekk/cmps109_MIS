@@ -6,7 +6,7 @@
 
 #pragma once
 #include <string>
-#include "Parser.h"
+#include "../Parser.h"
 
 class Jump{
    public:

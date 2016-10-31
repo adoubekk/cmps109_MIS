@@ -66,9 +66,9 @@ int main(){
 	//---------------------------------------------------------------------------
 	//Strings
 
-	String StackString("myStackS", "this is a",9);
-	String* myString = new String("HeapString", "this is b", 9);
-	Type* myStringT = new String("TypePtrString", "this is c", 9);
+	String StackString("myStackS", "this is a",100);
+	String* myString = new String("HeapString", "this is b", 100);
+	Type* myStringT = new String("TypePtrString", "this is c", 100);
 	string j;
 	string k;
 	string l;
@@ -86,12 +86,37 @@ int main(){
 	myStringT->setChar(8, 'w');
 	z = myStringT->getChar(8);
 
-	cout << j << endl;
-	cout << k << endl;
-	cout << l << endl;
+	string setValueTestS = "new stack string";
+	string setValueTestH = "new heap string";
+	string setValueTestT = "new Type-declared string";
 
-	cout << x << endl;
-	cout << y << endl;
-	cout << z << endl;
+	StackString.setValue(&setValueTestS);
+	myString->setValue(&setValueTestH);
+	myStringT->setValue(&setValueTestT);
 
+	cout << j << endl; // This is a
+	cout << k << endl; // This is b
+	cout << l << endl; // This is c
+
+	cout << x << endl; // a
+	cout << y << endl; // b
+	cout << z << endl; // w
+
+	StackString.getValue(&j);
+	myString->getValue(&k);
+	myStringT->getValue(&l);
+
+	cout << j << endl; // new stack string
+	cout << k << endl; // new heap string
+	cout << l << endl; // new Type-declared string
+
+	//Tear down
+	delete myNumeric;
+	delete myNumericT;
+	delete myReal;
+	delete myRealT;
+	delete myChar;
+	delete myCharT;
+	delete myString;
+	delete myStringT;
 }

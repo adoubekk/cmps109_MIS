@@ -48,7 +48,7 @@ char String::getChar(int index){
 }
 
 void String::setValue(void * ptr){
-	char ** charPtr = static_cast<char**>(ptr);
+	string * charPtr = static_cast<string*>(ptr);
 	value = *charPtr;
 
 	for(int i = 0; i < value.length(); i++){

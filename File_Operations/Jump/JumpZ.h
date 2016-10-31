@@ -13,8 +13,9 @@
 
 class JumpZ: public JumpOperation{
    public:
-      JumpZ(std::string name, Parser* P_, Type* Var);
+      JumpZ (std::string name, Parser* P_, Type* Var, bool Z);
       virtual bool jumpCondition();
    private:
       Type* Var;
+      bool Z;
 };

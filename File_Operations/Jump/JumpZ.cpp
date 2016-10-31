@@ -9,14 +9,19 @@
 
 using namespace std;
 
-JumpZ::JumpZ(string name, Parser* P_, Type* Var){
+JumpZ::JumpZ(string name, Parser* P_, Type* Var, bool Z){
    this->P = P_;
    this->name = name;
    this->Var = Var;
+   this->Z = Z;
 }
 
 bool JumpZ::jumpCondition(){
    double val;
    Var->getValue(&val);
-   return (val == 0);
+   if (Z) {
+      return (val == 0);
+   } else {
+      return (val != 0);
+   }
 }

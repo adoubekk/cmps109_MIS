@@ -21,9 +21,9 @@ int main(){
 		cout << printVector(nextLine) <<endl;
    }
    Real* R = new Real("Name", 1);
-   JumpZ J("LAB1",myParser,R);
+   JumpZ J("LAB1",myParser,R,false);
    Jump J2("LAB1",myParser);
-   J2.execute();
+   J.execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

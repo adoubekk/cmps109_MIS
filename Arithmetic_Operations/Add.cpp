@@ -19,39 +19,63 @@ void Add::doOperation(){
 	char type2;
 	char otherType;
 	double val = 0;
-	double val2;
+	double val2 = 0;
+	int Nval = 0;
+	int Nval2 = 0;
 
-
-	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, int.
+	if(variables.size() <= 2){
+		// throw error
+	}
+	
+	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, Type.
 	for( vector<Type *>::iterator it = variables.begin(); it != variables.end(); it++){
 		if(globalCounter == 0 ){
-		    first_arg = *it; // set temp to point to the first argument
+			first_arg = *it; // set temp to point to the first argument
 			first_arg->getType(&type1); // get type for exception purposes
 		}
 		if(globalCounter == 1){
-
 			second_arg = *it;
-			second_arg->getValue(&val);
 			second_arg->getType(&type2);
-			if(type2 != type1){
-			//throw error
-			}
-		}
-		else
-		{
-			Type * other_arg = *it;
-			other_arg->getValue(&val2); // dereference temp and increment it with the next iteration dereferenced
-			other_arg->getType(&otherType);
-			if (otherType != type1){
+			if (type2 != type1 || type2 != 'N' && type2 != 'R'){ // type checking
 				// throw Arithmetic error
 			}
 
+			if(type2 == 'N'){
+			second_arg->getValue(&Nval);
+		}else{
+			second_arg->getValue(&val);
+		}
+
+		}
+
+		else{
+			Type* other_arg = *it; // dereference it and multiply it with the next iteration dereferenced
+			other_arg->getType(&otherType);
+			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
+				// throw Arithmetic error
+			}
+
+			if(type2 == 'N'){
+			other_arg->getValue(&Nval2);
+		}else{
+			other_arg->getValue(&val2);
+		}
+
+			if(type2 == 'N'){
+			Nval += Nval2;
+		}else{
 			val += val2;
 		}
+		}
+
   		globalCounter += 1;
 	}
 
-    first_arg->setValue(&val);
+	if(type1 == 'N'){
+	first_arg->setValue(&Nval);
+}else{
+	first_arg->setValue(&val);	
+}
 	first_arg = NULL;
 
 };

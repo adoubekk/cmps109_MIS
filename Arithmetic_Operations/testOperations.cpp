@@ -15,9 +15,11 @@ int main(){
 
 	//-------------------------------------------------------------
 	//Add Operation
+	
 	Type * myNumeric = new Numeric("MyNum", 74);
 	Type * myNumeric1 = new Numeric("Num1", 6);
-	Type * myNumeric2 = new Numeric("Num2", 4);
+	Type * myNumeric2 = new Numeric("Num2", 30);
+	Type* thirdNumeric = new Numeric("num3", 4);
 
 	Type * myReal = new Real("MyReal", 6.5);
 	Type * myReal1 = new Real("MyReal1", 5.5);
@@ -48,8 +50,17 @@ int main(){
 	myReal->getValue(&b);
 
 
-	cout << "Add 6 and 4: " << a << endl;
+	cout << "Add 6 and 30: " << a << endl;
 	cout << "Add 5.5 and 5: " << b << endl;
+
+	numVariables.push_back(thirdNumeric);
+	ArithmeticOperation* thirdAdd = new Add(numVariables);
+
+	thirdAdd->doOperation();
+
+	myNumeric->getValue(&a);
+
+	cout << "Add 6, 30, and 4: " << a << endl;
 
 
 	//-----------------------------------------------------------------------------
@@ -74,11 +85,11 @@ int main(){
 	realVariables1.push_back(myReal4);
 	realVariables1.push_back(myReal5);
 
-	ArithmeticOperation* SubObject = new Sub(numVariables1);
+	Sub* SubObject = new Sub(numVariables1);
 	ArithmeticOperation* SubObject2 = new Sub(realVariables1);
 
-	//SubObject->doOperation();
-	//SubObject2->doOperation();
+	SubObject->doOperation();
+	SubObject2->doOperation();
 	
 
 	int c = 0;
@@ -92,7 +103,83 @@ int main(){
 	cout << "Subtract 5 from 5.5: " << d << endl;
 
 
+	//----------------------------------------------------------------------
+	//Mult Operation
 
+	Type * myNumeric6 = new Numeric("MyNum", 74);
+	Type * myNumeric7 = new Numeric("Num1", 6);
+	Type * myNumeric8 = new Numeric("Num2", 30);
+
+	Type * myReal6 = new Real("MyReal", 6.5);
+	Type * myReal7 = new Real("MyReal1", 5.5);
+	Type * myReal8 = new Real("MyReal2", 5);
+
+	vector<Type *> numVariables2;
+	vector<Type *> realVariables2;
+
+	numVariables2.push_back(myNumeric6);
+	numVariables2.push_back(myNumeric7);
+	numVariables2.push_back(myNumeric8);
+
+	realVariables2.push_back(myReal6);
+	realVariables2.push_back(myReal7);
+	realVariables2.push_back(myReal8);
+
+	ArithmeticOperation* MultObject = new Mult(numVariables2);
+	Mult* MultObject2 = new Mult(realVariables2);
+
+	MultObject->doOperation();
+	MultObject2->doOperation();
+	
+
+	int e = 0;
+	double f = 0;
+
+	myNumeric6->getValue(&e);
+	myReal6->getValue(&f);
+
+
+	cout << "Mult 6 and 30: " << e << endl;
+	cout << "Mult 5.5 and 5: " << f << endl;
+
+	//-----------------------------------------------------------------------------------------------
+	//Div operation
+
+	Type * myNumeric9 = new Numeric("MyNum", 74);
+	Type * myNumeric10 = new Numeric("Num1", 30);
+	Type * myNumeric11 = new Numeric("Num2", 6);
+
+	Type * myReal9 = new Real("MyReal", 6.5);
+	Type * myReal10 = new Real("MyReal1", 12.5);
+	Type * myReal11 = new Real("MyReal2", 2.0);
+
+	vector<Type *> numVariables3;
+	vector<Type *> realVariables3;
+
+	numVariables3.push_back(myNumeric9);
+	numVariables3.push_back(myNumeric10);
+	numVariables3.push_back(myNumeric11);
+
+	realVariables3.push_back(myReal9);
+	realVariables3.push_back(myReal10);
+	realVariables3.push_back(myReal11);
+
+	ArithmeticOperation* DivObject = new Div(numVariables3);
+	Div* DivObject2 = new Div(realVariables3);
+
+	DivObject->doOperation();
+	DivObject2->doOperation();
+	
+
+	int g = 0;
+	double h = 0;
+
+	myNumeric9->getValue(&g);
+	myReal9->getValue(&h);
+
+
+	cout << "30 / 6: " << g << endl;
+	cout << "12.5 / 2.0: " << h << endl;
 
 
     /* this was the testing phase of int pointers instead of Type pointers

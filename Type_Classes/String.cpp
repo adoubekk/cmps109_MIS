@@ -15,6 +15,7 @@ String::String(string varName, string value, int size){
 	name = varName;
 	this->value = value;
 	arraySize = size;
+	length = value.length();
 	sentenceSpace= (char *) calloc(arraySize, sizeof(char));
 
 	for (int i = 0; i<value.length(); i++){
@@ -37,11 +38,11 @@ void String::getType(void* ptr){
 }
 
 int String::getLength(){
-	return value.length();
+	return length;
 }
 
 char String::getChar(int index){
-	if(index < 0 || index >= value.length()){
+	if(index < 0 || index >= length){
 		// throw invalidIndex exception
 	}
 	return sentenceSpace[index];
@@ -57,8 +58,11 @@ void String::setValue(void * ptr){
 }
 
 void String::setChar(int index, char c){
-	if(index < 0 || index >= value.length()){
+	if(index < 0 || index > length){
 		// throw invalidIndex exception
+	}else if(index == length){
+		length++;
+		sentenceSpace[index] = c;
 	}
 	sentenceSpace[index] = c;
 }

@@ -56,15 +56,12 @@ void Mult::doOperation(){
 
 			if(type2 == 'N'){
 			other_arg->getValue(&Nval2);
-		}else{
-			other_arg->getValue(&val2);
-		}
-
-			if(type2 == 'N'){
 			Nval *= Nval2;
 		}else{
+			other_arg->getValue(&val2);
 			val *= val2;
 		}
+
 		}
 
   		globalCounter += 1;

@@ -37,7 +37,7 @@ void Div::doOperation(){
 			second_arg = *it;
 
 			second_arg->getType(&type2);
-			if(type1 != type2){
+			if(type1 != type2 || type2 != 'N' && type2 != 'R'){
 				// throw ERROR 
 			}
 
@@ -49,13 +49,13 @@ void Div::doOperation(){
 		}
 		}
 		else{
-			Type* other_arg = *it; // dereference temp and increment it with the next iteration dereferenced
+			Type* other_arg = *it; // dereference temp and divide it with the next iteration dereferenced
 
 			other_arg->getType(&otherType);
-
-			if (otherType != type1){
+			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
 				// throw Arithmetic error
 			}
+
 				if(otherType == 'N'){
 				other_arg->getValue(&Nval2);
 				Nval /= Nval2;

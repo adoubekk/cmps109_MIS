@@ -26,7 +26,7 @@ void Add::doOperation(){
 	if(variables.size() <= 2){
 		// throw error
 	}
-	
+
 	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, Type.
 	for( vector<Type *>::iterator it = variables.begin(); it != variables.end(); it++){
 		if(globalCounter == 0 ){
@@ -49,23 +49,20 @@ void Add::doOperation(){
 		}
 
 		else{
-			Type* other_arg = *it; // dereference it and multiply it with the next iteration dereferenced
+			Type* other_arg = *it; // dereference it and add it with the next iteration dereferenced
 			other_arg->getType(&otherType);
 			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
 				// throw Arithmetic error
 			}
 
-			if(type2 == 'N'){
+			if(otherType == 'N'){
 			other_arg->getValue(&Nval2);
-		}else{
-			other_arg->getValue(&val2);
-		}
-
-			if(type2 == 'N'){
 			Nval += Nval2;
 		}else{
+			other_arg->getValue(&val2);
 			val += val2;
 		}
+
 		}
 
   		globalCounter += 1;

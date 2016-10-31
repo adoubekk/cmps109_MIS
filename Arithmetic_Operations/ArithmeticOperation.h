@@ -1,7 +1,7 @@
-#ifndef ARITHMETICOPERATIONS_H
-#define ARITHMETICOPERATIONS_H
+#ifndef ARITHMETICOPERATION_H
+#define ARITHMETICOPERATION_H
 
-class ArithmeticOperations{
+class ArithmeticOperation{
 
 public:
 

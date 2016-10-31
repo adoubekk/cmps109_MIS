@@ -12,26 +12,37 @@ Add::Add(vector<Type *> & MIS_Args): variables(MIS_Args){ // copy the arguments 
 
 
 void Add::doOperation(){
-	Type* temp; // using this to fetch the first argument as the one to change
+	Type* first_arg; // using this to fetch the first argument as the one to change
+	Type* second_arg;
 	int globalCounter = 0;
-	char type;
+	char type1;
+	char type2;
 	char otherType;
-	int val = 0;
-	int val2;
+	double val = 0;
+	double val2;
 
 
 	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, int.
 	for( vector<Type *>::iterator it = variables.begin(); it != variables.end(); it++){
 		if(globalCounter == 0 ){
-		    temp = *it; // set temp to point to the first argument
-			temp->getType(&type); // get type for exception purposes
-			temp->getValue(&val);
-			temp->setValue(&val); // REMOVE
-		}else{
-			Type * temp2 = *it;
-			temp2->getValue(&val2); // dereference temp and increment it with the next iteration dereferenced
-			temp2->getType(&otherType);
-			if (otherType != type){
+		    first_arg = *it; // set temp to point to the first argument
+			first_arg->getType(&type1); // get type for exception purposes
+		}
+		if(globalCounter == 1){
+
+			second_arg = *it;
+			second_arg->getValue(&val);
+			second_arg->getType(&type2);
+			if(type2 != type1){
+			//throw error
+			}
+		}
+		else
+		{
+			Type * other_arg = *it;
+			other_arg->getValue(&val2); // dereference temp and increment it with the next iteration dereferenced
+			other_arg->getType(&otherType);
+			if (otherType != type1){
 				// throw Arithmetic error
 			}
 
@@ -40,8 +51,8 @@ void Add::doOperation(){
   		globalCounter += 1;
 	}
 
-    temp->setValue(&val);
-	temp = NULL;
+    first_arg->setValue(&val);
+	first_arg = NULL;
 
 };
 

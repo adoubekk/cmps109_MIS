@@ -9,24 +9,88 @@
 using namespace std;
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
+#include "../Type_Classes/Real.h"
 
 int main(){
 
+	//-------------------------------------------------------------
+	//Add Operation
+	Type * myNumeric = new Numeric("MyNum", 74);
 	Type * myNumeric1 = new Numeric("Num1", 6);
+	Type * myNumeric2 = new Numeric("Num2", 4);
 
-	Type * myNumeric2 = new Numeric("Num1", 4);
+	Type * myReal = new Real("MyReal", 6.5);
+	Type * myReal1 = new Real("MyReal1", 5.5);
+	Type * myReal2 = new Real("MyReal2", 5);
 
-	vector<Type *> variables;
-	variables.push_back(myNumeric1);
-	variables.push_back(myNumeric2);
+	vector<Type *> numVariables;
+	vector<Type *> realVariables;
 
-	Add* AddObject = new Add(variables);
+	numVariables.push_back(myNumeric);
+	numVariables.push_back(myNumeric1);
+	numVariables.push_back(myNumeric2);
+
+	realVariables.push_back(myReal);
+	realVariables.push_back(myReal1);
+	realVariables.push_back(myReal2);
+
+	ArithmeticOperation* AddObject = new Add(numVariables);
+	Add* AddObject2 = new Add(realVariables);
+
 	AddObject->doOperation();
+	AddObject2->doOperation();
+	
 
 	int a = 0;
-	myNumeric1->getValue(&a);
+	double b = 0;
 
-	cout << a << endl;
+	myNumeric->getValue(&a);
+	myReal->getValue(&b);
+
+
+	cout << "Add 6 and 4: " << a << endl;
+	cout << "Add 5.5 and 5: " << b << endl;
+
+
+	//-----------------------------------------------------------------------------
+	//Sub Operation 
+
+	Type * myNumeric3 = new Numeric("MyNum", 74);
+	Type * myNumeric4 = new Numeric("Num1", 6);
+	Type * myNumeric5 = new Numeric("Num2", 4);
+
+	Type * myReal3 = new Real("MyReal", 6.5);
+	Type * myReal4 = new Real("MyReal1", 5.5);
+	Type * myReal5 = new Real("MyReal2", 5);
+
+	vector<Type *> numVariables1;
+	vector<Type *> realVariables1;
+
+	numVariables1.push_back(myNumeric3);
+	numVariables1.push_back(myNumeric4);
+	numVariables1.push_back(myNumeric5);
+
+	realVariables1.push_back(myReal3);
+	realVariables1.push_back(myReal4);
+	realVariables1.push_back(myReal5);
+
+	ArithmeticOperation* SubObject = new Sub(numVariables1);
+	ArithmeticOperation* SubObject2 = new Sub(realVariables1);
+
+	//SubObject->doOperation();
+	//SubObject2->doOperation();
+	
+
+	int c = 0;
+	double d = 0;
+
+	myNumeric3->getValue(&c);
+	myReal3->getValue(&d);
+
+
+	cout <<"Subtract 4 from 6: " << c << endl;
+	cout << "Subtract 5 from 5.5: " << d << endl;
+
 
 
 

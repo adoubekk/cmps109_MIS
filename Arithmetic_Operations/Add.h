@@ -17,7 +17,7 @@ public:
 	~Add();
 
 
-	void doOperation(); // this will make use of the variable vector.
+    void doOperation(); // this will make use of the variable vector.
 
 };
 

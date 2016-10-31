@@ -1,11 +1,11 @@
 #ifndef DIV_H
 #define DIV_H
-#include "ArithmeticOperations.h"
+#include "ArithmeticOperation.h"
 #include <vector>
 
 using namespace std;
 
-class Div : public ArithmeticOperations{
+class Div : public ArithmeticOperation{
 private:
 	vector<int *> variables; // right now this is <int> should change to <Type> when implemented..
 public:

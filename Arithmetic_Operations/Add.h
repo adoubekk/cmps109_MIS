@@ -1,12 +1,12 @@
 #ifndef ADD_H
 #define ADD_H
 #include "../Type_Classes/Type.h"
-#include "ArithmeticOperations.h"
+#include "ArithmeticOperation.h"
 #include <vector>
 
 using namespace std;
 
-class Add : public ArithmeticOperations{
+class Add : public ArithmeticOperation{
 private:
 	vector<Type *> variables; // right now this is <int> should change to <Type> when implemented..
 public:

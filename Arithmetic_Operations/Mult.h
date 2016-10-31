@@ -1,11 +1,11 @@
 #ifndef MULT_H
 #define MULT_H
-#include "ArithmeticOperations.h"
+#include "ArithmeticOperation.h"
 #include <vector>
 
 using namespace std;
 
-class Mult : public ArithmeticOperations{
+class Mult : public ArithmeticOperation{
 private:
 	vector<int *> variables; // right now this is <int> should change to <Type> when implemented..
 public:

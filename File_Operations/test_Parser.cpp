@@ -20,10 +20,12 @@ int main(){
 		}
 		cout << printVector(nextLine) <<endl;
    }
-   Real* R = new Real("Name", 1);
-   JumpZ J("LAB1",myParser,R,false);
+   Real* R1 = new Real("R1", 4.0);
+   Real* R2 = new Real("R2", 3.0);
+   JumpZ J("LAB1",myParser,R1,false);
    Jump J2("LAB1",myParser);
-   J.execute();
+   JumpCp J3("LAB1",myParser,R1,R2,JumpCp::GTE);
+   J3.execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

@@ -15,10 +15,8 @@ JumpZ::JumpZ(string name, Parser* P_, Type* Var){
    this->Var = Var;
 }
 
-void JumpZ::execute(){
+bool JumpZ::jumpCondition(){
    double val;
    Var->getValue(&val);
-   if (val == 0) {
-      P->goToLabel(name);
-   }
+   return (val == 0);
 }

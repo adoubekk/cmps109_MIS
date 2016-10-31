@@ -13,6 +13,6 @@ Jump::Jump(string name, Parser* P_){
    this->name = name;
 }
 
-void Jump::execute(){
-   P->goToLabel(name);
+bool Jump::jumpCondition(){
+   return true;
 }

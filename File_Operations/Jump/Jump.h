@@ -5,14 +5,10 @@
 //Jump to a specific label in the input stream of the parser passed in
 
 #pragma once
-#include <string>
-#include "../Parser.h"
+#include "JumpOperation.h"
 
-class Jump{
+class Jump: public JumpOperation{
    public:
       Jump(std::string name, Parser* P_);
-      void execute();
-   private:
-      std::string name;
-      Parser* P;
+      virtual bool jumpCondition();
 };

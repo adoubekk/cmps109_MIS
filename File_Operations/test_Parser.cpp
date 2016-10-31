@@ -1,7 +1,6 @@
 //test_Parser.cpp
 
-#include "Jump/Jump.h"
-#include "Jump/JumpZ.h"
+#include "Jump/Jumps.h"
 #include "Parser.h"
 #include <iostream>
 #include "../Type_Classes/Numeric.h"
@@ -21,9 +20,10 @@ int main(){
 		}
 		cout << printVector(nextLine) <<endl;
    }
-   Real* R = new Real("Name", 0);
+   Real* R = new Real("Name", 1);
    JumpZ J("LAB1",myParser,R);
-   J.execute();
+   Jump J2("LAB1",myParser);
+   J2.execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

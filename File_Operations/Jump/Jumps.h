@@ -1,5 +1,6 @@
 //Header to include all jump functionality
 
-#include "Jumps.h"
+#include "JumpOperation.h"
+#include "Jump.h"
 #include "JumpZ.h"
 

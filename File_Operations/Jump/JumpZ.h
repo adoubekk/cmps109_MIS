@@ -7,16 +7,14 @@
 
 #pragma once
 #include <string>
-#include "../Parser.h"
+#include "JumpOperation.h"
 #include "../../Type_Classes/Numeric.h"
 #include "../../Type_Classes/Real.h"
 
-class JumpZ{
+class JumpZ: public JumpOperation{
    public:
       JumpZ(std::string name, Parser* P_, Type* Var);
-      void execute();
+      virtual bool jumpCondition();
    private:
-      std::string name;
-      Parser* P;
       Type* Var;
 };

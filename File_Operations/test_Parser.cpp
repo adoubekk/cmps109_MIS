@@ -20,12 +20,13 @@ int main(){
 		}
 		cout << printVector(nextLine) <<endl;
    }
-   Real* R1 = new Real("R1", 4.0);
-   Real* R2 = new Real("R2", 3.0);
-   JumpZ J("LAB1",myParser,R1,false);
+   Real* R1 = new Real("R1", 2.0);
+   Real* R2 = new Real("R2", 2.0);
+   Numeric* N = new Numeric("N", 0);
+   JumpZ J("LAB1",myParser,N,true);
    Jump J2("LAB1",myParser);
-   JumpCp J3("LAB1",myParser,R1,R2,JumpCp::GTE);
-   J3.execute();
+   JumpCp J3("LAB1",myParser,N,R2,JumpCp::GT);
+   J.execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

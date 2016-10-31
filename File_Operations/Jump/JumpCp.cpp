@@ -20,10 +20,34 @@ JumpCp::JumpCp(string name, Parser* P_, Type* Var1, Type* Var2, Logic L){
 }
 
 bool JumpCp::jumpCondition(){
-   double val1,val2;
-   Var1->getValue(&val1);
-   Var2->getValue(&val2);
+   char type1,type2;
+   double val1_R,val2_R, val1,val2;
+   int val1_N,val2_N;
    bool result = false;
+   
+   Var1->getType(&type1);
+   Var2->getType(&type2);
+   
+   //type safety checking
+   if (type1 == 'R'){
+      Var1->getValue(&val1_R);
+      val1 = val1_R;
+   } else if (type1 == 'N'){
+      Var1->getValue(&val1_N);
+      val1 = (double) val1_N;
+   } else {
+      //throw invalid type exception
+   }
+   
+   if (type2 == 'R'){
+      Var2->getValue(&val2_R);
+      val2 = val2_R;
+   } else if (type2 == 'N'){
+      Var2->getValue(&val2_N);
+      val2 = (double) val2_N;
+   } else {
+      //throw invalid type exception
+   }
    
    switch(this->L){
       case JumpCp::GT:

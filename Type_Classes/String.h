@@ -12,10 +12,12 @@ using namespace std;
 
 class String : public Type {
 private:
+	int arraySize;
 	int length;
 	string value;
 	string name;
 	char myType;
+	char * sentenceSpace;
 public:
 	// Constructor-Destructor
 	// Default Constructor

@@ -6,10 +6,10 @@
 using namespace std;
 
 // construct an Exception object and specify the type and specific error.
-ArithmeticException:: ArithmeticException(string Estr): Error(Estr) {}; // specific exception
+ArithmeticException:: ArithmeticException(string Estr): Error("Arithmetic Error: " + Estr) {}; // specific exception
 
 ArithmeticException:: ~ArithmeticException() throw() {};
 
-const string ArithmeticException::GetMessage() const throw() {return Error;};
+const char* ArithmeticException::what() const throw() {return Error.c_str();};
 
 

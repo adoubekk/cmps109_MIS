@@ -52,7 +52,8 @@ int main(){
 
 	cout << "Add 6 and 30: " << a << endl;
 	cout << "Add 5.5 and 5: " << b << endl;
-
+   
+    //testing more than 3 args
 	numVariables.push_back(thirdNumeric);
 	ArithmeticOperation* thirdAdd = new Add(numVariables);
 
@@ -61,6 +62,26 @@ int main(){
 	myNumeric->getValue(&a);
 
 	cout << "Add 6, 30, and 4: " << a << endl;
+
+	//testing Error handeling
+	vector<Type *> UnequalTypes;
+	vector<Type *> NotEnoughArgs;
+
+	Type * myErrNumeric = new Numeric("MyNum", 74);
+	Type * myErrReal = new Real("MyNum", 74);
+
+	NotEnoughArgs.push_back(myErrReal);
+
+	ArithmeticOperation* BadAdd = new Add(NotEnoughArgs);
+
+	try{
+	BadAdd->doOperation();
+}catch(exception& e){
+		cout << e.what() << endl;
+	}
+
+
+
 
 
 	//-----------------------------------------------------------------------------

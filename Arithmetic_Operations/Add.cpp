@@ -1,6 +1,7 @@
 #include "Add.h"
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
+#include "../Exceptions_Draft/ArithmeticException.h"
 #include <stdlib.h>
 #include <typeinfo>
 #include <string>
@@ -24,7 +25,8 @@ void Add::doOperation(){
 	int Nval2 = 0;
 
 	if(variables.size() <= 2){
-		// throw error
+		throw(ArithmeticException("Not enough arguments"));
+		return;
 	}
 
 	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, Type.
@@ -37,7 +39,8 @@ void Add::doOperation(){
 			second_arg = *it;
 			second_arg->getType(&type2);
 			if (type2 != type1 || type2 != 'N' && type2 != 'R'){ // type checking
-				// throw Arithmetic error
+				throw(ArithmeticException("Can only add numerics and reals exclusively"));
+				return;
 			}
 
 			if(type2 == 'N'){
@@ -52,7 +55,8 @@ void Add::doOperation(){
 			Type* other_arg = *it; // dereference it and add it with the next iteration dereferenced
 			other_arg->getType(&otherType);
 			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
-				// throw Arithmetic error
+				throw(ArithmeticException("Can only add numerics and reals exclusively"));
+				return;
 			}
 
 			if(otherType == 'N'){

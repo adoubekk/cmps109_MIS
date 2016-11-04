@@ -16,7 +16,7 @@ public:
 
 	~ArithmeticException() throw(); // found this online, not sure what it means to add throw after a method.
 
-	const string GetMessage() const throw();
+	const char* what() const throw();
 };
 
 #endif

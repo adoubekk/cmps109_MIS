@@ -5,13 +5,24 @@
 
 using namespace std;
 // test
+
+int addBelow100(int a, int b){
+
+	if(a + b > 100){
+		throw (ArithmeticException("too big"));
+	}
+	else return a;
+
+}
+
+
 int main(){
 	try{
-		//adding two strings
-		throw(ArithmeticException((string)"Can't add strings"));  // 
+		//something not allowed
+		addBelow100(500,400); // 
 	}
-	catch(ArithmeticException e){
-		cout << e.GetMessage() << endl;
+	catch(exception& e){
+		cout << e.what() << endl;
 	}
 
 }

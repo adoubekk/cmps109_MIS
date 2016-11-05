@@ -4,14 +4,13 @@
 
 using namespace std;
 
-MIS::MIS(): gloabalCounter(0) {};
+MIS::MIS(){};
 MIS::~MIS(){}
 
 
 void MIS::makeParser(string fileName){
 
-	Parser* MIS_Parser = new Parser(fileName);
-	MIS_Parsers[gloabalCounter++] = MIS_Parser;
+	MIS_Parser = new Parser(fileName);
 
 }
 

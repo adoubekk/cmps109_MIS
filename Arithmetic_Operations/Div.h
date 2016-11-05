@@ -3,6 +3,7 @@
 #include "ArithmeticOperation.h"
 #include "../Type_Classes/Type.h"
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -14,10 +15,16 @@ public:
 
 	Div(vector<Type *> & MIS_Args); // copy the mis_vector
 
+	Div();
+
 	~Div();
 
 
-	void doOperation(); // this will make use of the variable vector.
+	void execute(); // this will make use of the variable vector.
+
+    void initialize(vector<string>& args, map<string, Type*>& variables);
+
+    ArithmeticOperation* clone(vector<string>& args, map<string, Type*>& variables);
 
 };
 

@@ -1,10 +1,12 @@
 #include "Add.h"
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
+#include "../Type_Classes/Real.h"
 #include "../Exceptions_Draft/ArithmeticException.h"
 #include <stdlib.h>
 #include <typeinfo>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -12,7 +14,7 @@ Add::Add(vector<Type *> & MIS_Args): variables(MIS_Args){ // copy the arguments 
 };
 
 
-void Add::doOperation(){
+void Add::execute(){
 	Type* first_arg; // using this to fetch the first argument as the one to change
 	Type* second_arg;
 	int globalCounter = 0;
@@ -80,6 +82,43 @@ void Add::doOperation(){
 	first_arg = NULL;
 
 };
+
+void Add::initialize(vector<string>& args, map<string, Type*>& variables){
+	for(int i = 1; i < args.size(); i++){
+		string word = args[i];
+		char a;
+		if(variables[word] != NULL){
+			if(word[0] == '$'){ // if the argument is a variable
+			Type* myType = variables[word];
+			myType->getType(&a);
+			this->variables.push_back(myType);
+		}
+
+		}
+		if(strtod(word.c_str(), NULL)){
+				if(a == 'N'){
+				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
+				this->variables.push_back(literalN);
+			}else{
+				Type* literalR = new Real("tempR", strtod(word.c_str(), NULL));
+				this->variables.push_back(literalR);
+			}
+
+			}
+			
+	}
+
+}
+
+ArithmeticOperation* Add::clone(vector<string>& args, map<string, Type*>& variables){
+	Add* add = new Add();
+	add->initialize(args, variables);
+	return add;
+
+}
+
+
+Add::Add(){}
 
 Add::~Add(){
 	for( vector<Type *>::iterator it = variables.begin(); it != variables.end(); it++){

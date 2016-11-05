@@ -14,10 +14,16 @@ public:
 
 	Sub(vector<Type *> & MIS_Args); // copy the mis_vector
 
+	Sub();
+
 	~Sub();
 
 
-	void doOperation(); // this will make use of the variable vector.
+	void execute(); // this will make use of the variable vector.
+
+    void initialize(vector<string>& args, map<string, Type*>& variables);
+
+    ArithmeticOperation* clone(vector<string>& args, map<string, Type*>& variables);
 
 };
 

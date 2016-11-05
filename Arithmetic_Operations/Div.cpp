@@ -1,4 +1,8 @@
 #include "Div.h"
+#include "../Type_Classes/Type.h"
+#include "../Type_Classes/Numeric.h"
+#include "../Type_Classes/Real.h"
+#include "../Exceptions_Draft/ArithmeticException.h"
 #include <stdlib.h>
 #include <typeinfo>
 #include <string>
@@ -10,7 +14,7 @@ Div::Div(vector<Type *> & MIS_Args): variables(MIS_Args){ // copy the arguments 
 };
 
 
-void Div::doOperation(){
+void Div::execute(){
 	Type * first_arg; // using this to fetch the first argument as the one to change
 	Type * second_arg;
 	int globalCounter = 0;
@@ -23,7 +27,12 @@ void Div::doOperation(){
 	int Nval2 = 0;
 
 	if(variables.size() <= 2){
-		// throw error
+		throw(ArithmeticException("Not enough arguments"));
+		return;
+	}
+	if(variables.size() >=4){
+		throw(ArithmeticException("too many arguments"));
+		return;
 	}
 
 	// iterate through argument pointers *it refers to the pointer/address, **it refers to the dereferenced object, in the case, int.
@@ -38,7 +47,8 @@ void Div::doOperation(){
 
 			second_arg->getType(&type2);
 			if(type1 != type2 || type2 != 'N' && type2 != 'R'){
-				// throw ERROR 
+				throw(ArithmeticException("Can only divide numerics and reals exclusively"));
+				return;
 			}
 
 		 // if numeric use an integer pointer
@@ -53,7 +63,8 @@ void Div::doOperation(){
 
 			other_arg->getType(&otherType);
 			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
-				// throw Arithmetic error
+				throw(ArithmeticException("Can only divide numerics and reals exclusively"));
+				return;
 			}
 
 				if(otherType == 'N'){
@@ -69,10 +80,6 @@ void Div::doOperation(){
 			
 		
   		globalCounter += 1;
-  		if(globalCounter >= 3){
-  			//throw Arithmetic error
-  			break;
-  		}
 	}
 
 	if(type1 == 'N'){
@@ -83,6 +90,42 @@ void Div::doOperation(){
 
 	first_arg = NULL;
 }
+
+void Div::initialize(vector<string>& args, map<string, Type*>& variables){
+	for(int i = 1; i < args.size(); i++){
+		string word = args[i];
+		char a;
+		if(variables[word] != NULL){
+			if(word[0] == '$'){ // if the argument is a variable
+			Type* myType = variables[word];
+			myType->getType(&a);
+			this->variables.push_back(myType);
+		}
+
+		}
+		if(strtod(word.c_str(), NULL)){
+				if(a == 'N'){
+				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
+				this->variables.push_back(literalN);
+			}else{
+				Type* literalR = new Real("tempR", strtod(word.c_str(), NULL));
+				this->variables.push_back(literalR);
+			}
+
+			}
+			
+	}
+
+}
+
+ArithmeticOperation* Div::clone(vector<string>& args, map<string, Type*>& variables){
+	Div* div= new Div();
+	div->initialize(args, variables);
+	return div;
+
+}
+
+Div::Div(){}
 
 Div::~Div(){
 	for( vector<Type *>::iterator it = variables.begin(); it != variables.end(); it++){

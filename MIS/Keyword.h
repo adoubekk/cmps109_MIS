@@ -10,9 +10,9 @@
 
 class Keyword {
    public:
-      virtual Keyword* clone(vector<string> rawData, map<string, Type*> typeVars) = 0;
-      virtual void initialize(vector<string> rawData) = 0;
+      virtual Keyword* clone(vector<std::string> rawData, map<std::string, Type*> &typeVars) = 0;
+      virtual void initialize(vector<std::string> rawData) = 0;
       virtual void execute() = 0;
    protected:
-      map<string, Type*> &typeVars;
-}
+      map<std::string, Type*> &typeVars;
+};

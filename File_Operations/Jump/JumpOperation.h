@@ -7,12 +7,12 @@
 #pragma once
 #include <string>
 #include "../Parser.h"
+#include "../../MIS/Keyword.h"
 
-class JumpOperation{
+class JumpOperation: public Keyword{
    public:
       virtual void execute() final;
       virtual bool jumpCondition() = 0;
-      virtual JumpOperation* clone
    protected:
       std::string name;
       Parser* P;

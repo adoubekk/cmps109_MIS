@@ -11,4 +11,6 @@ class Jump: public JumpOperation{
    public:
       Jump(std::string name, Parser* P_);
       virtual bool jumpCondition();
+      virtual Keyword* clone(vector<std::string> rawData, map<std::string, Type*> &typeVars);
+      virtual void initialize(vector<std::string> rawData);
 };

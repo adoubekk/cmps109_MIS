@@ -7,6 +7,8 @@ Numeric.h
 #ifndef REAL_H
 #define REAL_H
 #include <string>
+#include <vector>
+#include <map>
 #include "Type.h"
 
 using namespace std;
@@ -16,6 +18,7 @@ private:
 	double number;
 	string name;
 	char myType;
+	map<string, Type *> &typeMap;
 public:
 
 	
@@ -38,6 +41,11 @@ public:
 
 	// Manipulation Methods
 	virtual void setValue(void* value_ptr);
+
+	// Other
+	virtual void initialize(vector<string> dataList);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &variableType);
+	virtual void execute();
 };
 
 #endif // !NUMERIC_H

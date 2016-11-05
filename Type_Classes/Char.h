@@ -6,6 +6,8 @@ Char.h
 #ifndef CHAR_H
 #define CHAR_H
 #include <string>
+#include <vector>
+#include <map>
 #include "Type.h"
 
 using namespace std;
@@ -15,6 +17,7 @@ private:
 	char value;
 	string name;
 	char myType;
+	map<string, Type *> &typeMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor
@@ -33,5 +36,10 @@ public:
 
 	// Manipulation Methods
 	virtual void setValue(void * value);
+
+	// Other
+	void initialize(vector<string> dataList);
+	Keyword * clone(vector<string> dataList, map<string, Type*> &variableType);
+	void Numeric::execute();
 };
 #endif // !CHAR_H

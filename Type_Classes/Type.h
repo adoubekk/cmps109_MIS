@@ -8,13 +8,17 @@ Type.h
 #define TYPE_H
 
 #include <string>
+#include <vector>
+#include <map>
+#include "Keyword.h"
 
 using namespace std;
 
 
 
-class Type {
+class Type: public Keyword {
 private:
+	map * typeMap;
 
 public:
 	// Access Methods
@@ -32,5 +36,9 @@ public:
 	// Manipulation Methods
 	virtual void setValue( void* value_ptr) = 0;
 
+	// Other
+	virtual void initialize(vector dataList) = 0;
+	virtual Keyword * clone(vector dataList, map<string, Type*> &variableType) = 0;
+	virtual void execute() = 0;
 };
 #endif //!TYPE_H

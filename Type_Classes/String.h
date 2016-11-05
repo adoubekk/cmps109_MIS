@@ -6,6 +6,8 @@ String.h
 #ifndef STRING_H
 #define STRING_H
 #include <string>
+#include <vector>
+#include <map>
 #include "Type.h"
 
 using namespace std;
@@ -18,6 +20,7 @@ private:
 	string name;
 	char myType;
 	char * sentenceSpace;
+	map<string, Type *> &typeMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor
@@ -39,6 +42,11 @@ public:
 	virtual void setValue(void * ptr);
 
 	virtual void setChar(int index, char c);
+
+	// Other
+	virtual void initialize(vector<string> dataList);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &variableType);
+	virtual void execute();
 };
 #endif // !STRING_H
 

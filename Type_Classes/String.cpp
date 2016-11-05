@@ -66,3 +66,25 @@ void String::setChar(int index, char c){
 	}
 	sentenceSpace[index] = c;
 }
+
+void String::initialize(vector<string> dataList){
+	name = dataList[0];
+	arraySize = dataList[1];
+	value = dataList[2];
+	length = value.length();
+	sentenceSpace= (char *) calloc(arraySize, sizeof(char));
+	for (int i = 0; i<value.length(); i++){
+		sentenceSpace[i]=value[i];
+	}
+}
+
+Keyword * String::clone(vector<string> dataList, map<string, Type*> &variableType){
+	typeMap = variableType;
+	string newString = new String();
+	newString->initialize(dataList);
+	return newString;
+}
+
+void String::execute(){
+	typeMap[name] = this;
+}

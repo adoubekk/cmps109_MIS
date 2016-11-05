@@ -20,6 +20,7 @@ private:
 	string name;
 	char myType;
 	char * sentenceSpace;
+	map<string, Type *> &typeMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor

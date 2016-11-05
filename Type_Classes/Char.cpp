@@ -28,12 +28,12 @@ void Char::setValue(void * ptr){
 	value = *myChar;
 }
 
-void Char::initialize(vector<string> dataList, map<string, Type*> &variableType){
+void Char::initialize(vector<string> dataList){
 	name = dataList[0];
 	value = dataList[1];
 }
 
-Keyword * Char::clone(vector<string> dataList){
+Keyword * Char::clone(vector<string> dataList, map<string, Type*> &variableType){
 	typeMap = variableType;
 	Char * character = new Char();
 	character->initialize(dataList);

@@ -18,6 +18,7 @@ private:
 	double number;
 	string name;
 	char myType;
+	map<string, Type *> &typeMap;
 public:
 
 	

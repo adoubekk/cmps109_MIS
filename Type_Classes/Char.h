@@ -17,7 +17,7 @@ private:
 	char value;
 	string name;
 	char myType;
-	map typeMap;
+	map<string, Type *> &typeMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor

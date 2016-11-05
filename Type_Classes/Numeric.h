@@ -18,7 +18,7 @@ private:
 	int number;
 	string name;
 	char myType;
-	map<string, Type *> &typeVars;
+	map<string, Type *> &typeMap;
 public:
 
 	

@@ -12,6 +12,7 @@ class JumpOperation{
    public:
       virtual void execute() final;
       virtual bool jumpCondition() = 0;
+      virtual JumpOperation* clone
    protected:
       std::string name;
       Parser* P;

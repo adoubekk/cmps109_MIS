@@ -27,3 +27,19 @@ void Char::setValue(void * ptr){
 	char* myChar = static_cast<char*>(ptr);
 	value = *myChar;
 }
+
+void Char::initialize(vector<string> dataList, map<string, Type*> &variableType){
+	name = dataList[0];
+	value = dataList[1];
+}
+
+Keyword * Char::clone(vector<string> dataList){
+	typeMap = variableType;
+	Char * character = new Char();
+	character->initialize(dataList);
+	return character;
+}
+
+void Char::execute(){
+	typeMap[name] = this;
+}

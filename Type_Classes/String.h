@@ -6,6 +6,8 @@ String.h
 #ifndef STRING_H
 #define STRING_H
 #include <string>
+#include <vector>
+#include <map>
 #include "Type.h"
 
 using namespace std;
@@ -39,6 +41,11 @@ public:
 	virtual void setValue(void * ptr);
 
 	virtual void setChar(int index, char c);
+
+	// Other
+	virtual void initialize(vector<string> dataList);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &variableType);
+	virtual void execute();
 };
 #endif // !STRING_H
 

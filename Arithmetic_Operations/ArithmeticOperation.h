@@ -17,9 +17,9 @@ public:
 
 	virtual void execute() = 0;
 
-	virtual void initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser) = 0;
+	virtual void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser) = 0;
 
-	virtual Keyword* clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser) = 0;
+	virtual Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser) = 0;
 };
 
 

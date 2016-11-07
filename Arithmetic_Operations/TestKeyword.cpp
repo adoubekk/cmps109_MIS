@@ -49,6 +49,7 @@ int main(){
 	Vars["$myVar1"]->getValue(&a);
 
 	cout << a << endl;
+	
 
 	//----------------------------------------------------------------------------------------
 
@@ -128,7 +129,7 @@ try{
 	
 	//if SUB was found in the keyword map...
 	Keyword* keywordObj4 = new Div(); // should be KEYWORD*
-	keywordObj4 = keywordObj4->clone(subArgs, Vars, NULL);
+	keywordObj4 = keywordObj4->clone(divArgs, Vars, NULL);
 	try{
 	keywordObj4->execute();  // should throw .. too many arguments.
 }catch(exception& e){
@@ -138,7 +139,7 @@ try{
 divArgs.pop_back();
 divArgs.pop_back();
 
-keywordObj4 = keywordObj4->clone(subArgs, Vars, NULL);
+keywordObj4 = keywordObj4->clone(divArgs, Vars, NULL);
 
 try{
 	keywordObj4->execute();  // var1 = 30 / 4 = 7
@@ -179,5 +180,5 @@ try{
 
 	AssignVars["$Avar1"]->getValue(&g);
 
-	cout << "$Avar1 <--" << g << endl;
+	cout << "$Avar1 <--" << g << endl; 
 }

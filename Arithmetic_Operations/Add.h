@@ -24,9 +24,9 @@ public:
 
     void execute(); // this will make use of the variable vector.
 
-    void initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser);
+    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
 
-    Keyword* clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser);
+    Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
 
 };
 

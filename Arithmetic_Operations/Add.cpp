@@ -85,7 +85,7 @@ void Add::execute(){
 
 };
 
-void Add::initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
+void Add::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
 	for(int i = 1; i < args.size(); i++){
 		string word = args[i];
 		char a;
@@ -97,6 +97,7 @@ void Add::initialize(vector<string>& args, map<string, Type*>& variables, Parser
 		}
 
 		}
+		if(word[0] == '$' && variables[word] == NULL){throw(ArithmeticException("variable not found"));}
 		if(strtod(word.c_str(), NULL)){
 				if(a == 'N'){
 				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
@@ -112,7 +113,7 @@ void Add::initialize(vector<string>& args, map<string, Type*>& variables, Parser
 
 }
 
-Keyword* Add::clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
+Keyword* Add::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
 	Add* add = new Add();
 	add->initialize(args, variables, NULL);
 	return add;

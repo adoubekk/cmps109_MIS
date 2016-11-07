@@ -95,18 +95,19 @@ void Sub::execute(){
 	first_arg = NULL;
 }
 
-void Sub::initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
+void Sub::initialize(vector<string> args, map<string, Type*>& vars, Parser* MIS_Parser){
 	for(int i = 1; i < args.size(); i++){
 		string word = args[i];
 		char a;
-		if(variables[word] != NULL){
+		if(vars[word] != NULL){
 			if(word[0] == '$'){ // if the argument is a variable
-			Type* myType = variables[word];
+			Type* myType = vars[word];
 			myType->getType(&a);
 			this->variables.push_back(myType);
 		}
 
 		}
+		if(word[0] == '$' && vars[word] == NULL){throw(ArithmeticException("variable not found"));}
 		if(strtod(word.c_str(), NULL)){
 				if(a == 'N'){
 				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
@@ -122,7 +123,7 @@ void Sub::initialize(vector<string>& args, map<string, Type*>& variables, Parser
 
 }
 
-Keyword* Sub::clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
+Keyword* Sub::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
 	Sub* sub= new Sub();
 	sub->initialize(args, variables, NULL);
 	return sub;

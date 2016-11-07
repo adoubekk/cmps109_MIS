@@ -15,8 +15,8 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	Numeric* num;
 	int input = 10;
-	int output;
 	string variable = "testInt";
+	int output;
 
 	num = new Numeric( variable, input );
 	/*output = num->getValue();

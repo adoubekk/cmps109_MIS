@@ -38,8 +38,8 @@ public:
 	virtual void setValue(void * value);
 
 	// Other
-	void initialize(vector<string> dataList);
-	Keyword * clone(vector<string> dataList, map<string, Type*> &variableType);
-	void Numeric::execute();
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars);
+	virtual void execute();
 };
 #endif // !CHAR_H

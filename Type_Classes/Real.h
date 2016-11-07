@@ -43,8 +43,8 @@ public:
 	virtual void setValue(void* value_ptr);
 
 	// Other
-	virtual void initialize(vector<string> dataList);
-	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &variableType);
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars);
 	virtual void execute();
 };
 

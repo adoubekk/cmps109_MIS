@@ -3,6 +3,8 @@
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
 #include "../Type_Classes/Real.h"
+#include "../MIS/Keyword.h"
+#include "../File_Operations/Parser.h"
 #include "../Exceptions_Draft/ArithmeticException.h"
 #include <stdlib.h>
 #include <typeinfo>
@@ -93,7 +95,7 @@ void Sub::execute(){
 	first_arg = NULL;
 }
 
-void Sub::initialize(vector<string>& args, map<string, Type*>& variables){
+void Sub::initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
 	for(int i = 1; i < args.size(); i++){
 		string word = args[i];
 		char a;
@@ -120,9 +122,9 @@ void Sub::initialize(vector<string>& args, map<string, Type*>& variables){
 
 }
 
-ArithmeticOperation* Sub::clone(vector<string>& args, map<string, Type*>& variables){
+Keyword* Sub::clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
 	Sub* sub= new Sub();
-	sub->initialize(args, variables);
+	sub->initialize(args, variables, NULL);
 	return sub;
 
 }

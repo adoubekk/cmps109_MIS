@@ -2,6 +2,9 @@
 #define SUB_H
 #include "ArithmeticOperation.h"
 #include "../Type_Classes/Type.h"
+#include "../MIS/Keyword.h"
+#include "../File_Operations/Parser.h"
+
 #include <vector>
 
 using namespace std;
@@ -21,9 +24,9 @@ public:
 
 	void execute(); // this will make use of the variable vector.
 
-    void initialize(vector<string>& args, map<string, Type*>& variables);
+    void initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser);
 
-    ArithmeticOperation* clone(vector<string>& args, map<string, Type*>& variables);
+    Keyword* clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser);
 
 };
 

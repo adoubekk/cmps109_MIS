@@ -9,11 +9,10 @@
 
 #include <string>
 #include "../Parser.h"
+#include "../../Type_Classes/Type.h"
 #include "../../MIS/Keyword.h"
 
-class Keyword;
-
-class JumpOperation: virtual public Keyword{
+class JumpOperation: public Keyword{
    public:
       //virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;
       //virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;

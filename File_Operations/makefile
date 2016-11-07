@@ -1,6 +1,5 @@
 #Makefile for Assignment 2, Problem 2
-SRC = test_Parser.cpp Parser.cpp Jump/*.cpp Label.cpp ../Type_Classes/Type.h ../MIS/Keyword.h
-OBJS = ${patsubst %.cpp, %.o, ${SRC}}
+SRC = test_Parser.cpp Parser.cpp Jump/*.cpp Label.cpp ../Type_Classes/Real.cpp ../Type_Classes/Numeric.cpp
 
 all: Parser
 

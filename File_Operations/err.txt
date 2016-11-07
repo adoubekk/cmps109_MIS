@@ -3,56 +3,49 @@ In file included from Jump/../../MIS/Keyword.h:12:0,
                  from Jump/Jump.h:7,
                  from Jump/Jumps.h:1,
                  from test_Parser.cpp:6:
-Jump/../../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
+Jump/../../MIS/../Type_Classes/Type.h:18:28: error: expected class-name before ‘{’ token
  class Type: public Keyword {
                             ^
-Jump/../../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
+Jump/../../MIS/../Type_Classes/Type.h:38:10: error: ‘Keyword’ does not name a type
   virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
           ^
 In file included from Jump/../../MIS/Keyword.h:12:0,
                  from Jump/JumpOperation.h:12,
                  from Jump/JumpCp.h:10,
                  from Jump/JumpCp.cpp:9:
-Jump/../../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
+Jump/../../MIS/../Type_Classes/Type.h:18:28: error: expected class-name before ‘{’ token
  class Type: public Keyword {
                             ^
-Jump/../../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
+Jump/../../MIS/../Type_Classes/Type.h:38:10: error: ‘Keyword’ does not name a type
   virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
           ^
 In file included from Jump/../../MIS/Keyword.h:12:0,
                  from Jump/JumpOperation.h:12,
                  from Jump/Jump.h:7,
                  from Jump/Jump.cpp:7:
-Jump/../../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
+Jump/../../MIS/../Type_Classes/Type.h:18:28: error: expected class-name before ‘{’ token
  class Type: public Keyword {
                             ^
-Jump/../../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
+Jump/../../MIS/../Type_Classes/Type.h:38:10: error: ‘Keyword’ does not name a type
   virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
           ^
 In file included from Jump/../../MIS/Keyword.h:12:0,
                  from Jump/JumpOperation.h:12,
                  from Jump/JumpOperation.cpp:7:
-Jump/../../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
+Jump/../../MIS/../Type_Classes/Type.h:18:28: error: expected class-name before ‘{’ token
  class Type: public Keyword {
                             ^
-Jump/../../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
+Jump/../../MIS/../Type_Classes/Type.h:38:10: error: ‘Keyword’ does not name a type
   virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
           ^
 In file included from Jump/../../MIS/Keyword.h:12:0,
                  from Jump/JumpOperation.h:12,
                  from Jump/JumpZ.h:9,
                  from Jump/JumpZ.cpp:8:
-Jump/../../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
+Jump/../../MIS/../Type_Classes/Type.h:18:28: error: expected class-name before ‘{’ token
  class Type: public Keyword {
                             ^
-Jump/../../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
-  virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
-          ^
-In file included from ../MIS/Keyword.h:12:0:
-../MIS/../Type_Classes/Type.h:17:28: error: expected class-name before ‘{’ token
- class Type: public Keyword {
-                            ^
-../MIS/../Type_Classes/Type.h:37:10: error: ‘Keyword’ does not name a type
+Jump/../../MIS/../Type_Classes/Type.h:38:10: error: ‘Keyword’ does not name a type
   virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser) = 0;
           ^
 make: *** [Parser] Error 1

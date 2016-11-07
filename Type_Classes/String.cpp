@@ -5,10 +5,18 @@
 
 #include "String.h"
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
-String::String(){}
+String::String(){
+	myType = 'S';
+	name = "";
+	value = "";
+	length = 0;
+	typeMap = NULL;
+	sentenceSpace = NULL;
+}
 
 String::String(string varName, string value, int size){
 	myType = 'S';
@@ -67,24 +75,24 @@ void String::setChar(int index, char c){
 	sentenceSpace[index] = c;
 }
 
-void String::initialize(vector<string> dataList){
-	name = dataList[0];
-	arraySize = dataList[1];
-	value = dataList[2];
-	length = value.length();
+void String::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
+	name = dataList[1];
+	arraySize = strtod(dataList[2].c_str(),NULL);;
+	value = dataList[3];
+	length = dataList[3].length();
 	sentenceSpace= (char *) calloc(arraySize, sizeof(char));
 	for (int i = 0; i<value.length(); i++){
 		sentenceSpace[i]=value[i];
 	}
+	typeVars[name] = this;
 }
 
-Keyword * String::clone(vector<string> dataList, map<string, Type*> &variableType){
-	typeMap = variableType;
-	string newString = new String();
-	newString->initialize(dataList);
+Keyword * String::clone(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
+	String* newString = new String();
+	newString->initialize(dataList, typeVars, NULL);
 	return newString;
 }
 
 void String::execute(){
-	typeMap[name] = this;
+	
 }

@@ -20,7 +20,7 @@ private:
 	string name;
 	char myType;
 	char * sentenceSpace;
-	map<string, Type *> &typeMap;
+	map<string, Type *> *typeMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor
@@ -44,8 +44,8 @@ public:
 	virtual void setChar(int index, char c);
 
 	// Other
-	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars);
-	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars);
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars,Parser* MIS_Parser);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars, Parser* MIS_Parser);
 	virtual void execute();
 };
 #endif // !STRING_H

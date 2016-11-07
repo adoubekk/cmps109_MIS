@@ -1,5 +1,6 @@
 #include "Numeric.h"
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ Numeric::Numeric(){
 	myType = 'N';
 	name = "";
 	number = 0;
-	varMap = nullptr;
+	varMap = NULL;
 
 }
 
@@ -37,18 +38,20 @@ void Numeric::setValue(void* value_ptr){
 	number = *intPtr;
 }
 
-void Numeric::initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
-	varMap = typeVars;
-	name = dataList[VARIABLENAME];
-	number = stod(dataList[VARIABLEVALUE]);
+void Numeric::initialize(vector<string> dataList, map<string, Type*>& typeVars, Parser * MISParser){
+	//mymap.insert ( std::pair<char,int>('a',100) )
+	//map<string, Type*> vars = * typeVars;
+	name = dataList[1];
+	number = strtod(dataList[2].c_str(),NULL);
+	typeVars[name] = this;
 }
 
-Keyword * Numeric::clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
+Keyword * Numeric::clone(vector<string> dataList, map<string, Type*>& typeVars, Parser * MISParser){
 	Numeric * numeric = new Numeric();
-	numeric->initialize(dataList, typeVars, MISParser);
+	numeric->initialize(dataList, typeVars, NULL);
 	return numeric;
 }
 
 void Numeric::execute(){
-	(*varMap)[name] = this;
+	
 }

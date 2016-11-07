@@ -17,7 +17,7 @@ private:
 	char value;
 	string name;
 	char myType;
-	map<string, Type *> &typeMap;
+	map<string, Type *> *varMap;
 public:
 	// Constructor-Destructor
 	// Default Constructor
@@ -38,8 +38,8 @@ public:
 	virtual void setValue(void * value);
 
 	// Other
-	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars);
-	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars);
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars, Parser* MIS_Parser);
 	virtual void execute();
 };
 #endif // !CHAR_H

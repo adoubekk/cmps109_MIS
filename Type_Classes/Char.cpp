@@ -1,9 +1,16 @@
 #include "Char.h"
+#include <string>
+#include <stdlib.h>
 
 Char::Char(){
+	myType = 'C';
+	name = "";
+	value = 0;
+	varMap = NULL;
 }
 
 Char::Char(string varName, char value){
+	myType = 'C';
 	name = varName;
 	this->value = value;
 }
@@ -28,18 +35,19 @@ void Char::setValue(void * ptr){
 	value = *myChar;
 }
 
-void Char::initialize(vector<string> dataList){
-	name = dataList[0];
-	value = dataList[1];
+void Char::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
+	name = dataList[1];
+	value = dataList[2][0]; // char
+	typeVars[name] = this;
+
 }
 
-Keyword * Char::clone(vector<string> dataList, map<string, Type*> &variableType){
-	typeMap = variableType;
+Keyword * Char::clone(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	Char * character = new Char();
-	character->initialize(dataList);
+	character->initialize(dataList, typeVars, NULL);
 	return character;
 }
 
 void Char::execute(){
-	typeMap[name] = this;
+	
 }

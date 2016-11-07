@@ -18,7 +18,7 @@ private:
 	double number;
 	string name;
 	char myType;
-	map<string, Type *> * varMap;
+	map<string, Type *> *varMap;
 public:
 
 	
@@ -43,8 +43,8 @@ public:
 	virtual void setValue(void* value_ptr);
 
 	// Other
-	virtual void initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser);
-	virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser);
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &typeVars, Parser* MIS_Parser);
 	virtual void execute();
 };
 

@@ -1,9 +1,15 @@
 #include "Real.h"
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
-Real::Real() {}
+Real::Real() {
+	myType = 'R';
+	name = "";
+	number = 0;
+	varMap = NULL;
+}
 
 Real::Real(string varName, double value) {
 	myType='R';
@@ -29,18 +35,18 @@ void Real::setValue(void * ptr) {
 	number = *DPtr;
 }
 
-void Real::initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
-	this->varMap = typeVars;
+void Real::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	name = dataList[1];
-	number = stod(dataList[2]);
+	number = strtod(dataList[2].c_str(),NULL);
+	typeVars[name] = this;
 }
 
-Keyword * Real::clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
+Keyword * Real::clone(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	Real * real = new Real();
-	real->initialize(dataList,typeVars,MISParser);
+	real->initialize(dataList, typeVars, NULL);
 	return real;
 }
 
 void Real::execute(){
-	(*varMap)[name] = this;
+	
 }

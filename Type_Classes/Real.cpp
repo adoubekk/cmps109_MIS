@@ -29,18 +29,18 @@ void Real::setValue(void * ptr) {
 	number = *DPtr;
 }
 
-void Real::initialize(vector<string> dataList){
-	name = dataList[0];
-	number = dataList[1];
+void Real::initialize(vector<string> dataList, map<string, Type*> &typeVars){
+	this->typeVars = typeVars;
+	name = dataList[1];
+	number = stod(dataList[2]);
 }
 
-Keyword * Real::clone(vector<string> dataList, map<string, Type*> &variableType){
-	typeMap = variableType;
-	Real * real = new Numeric();
+Keyword * Real::clone(vector<string> dataList, map<string, Type*> &typeVars){
+	Real * real = new Real();
 	real->initialize(dataList);
 	return real;
 }
 
 void Real::execute(){
-	typeMap[name] = this;
+	typeVars[name] = this;
 }

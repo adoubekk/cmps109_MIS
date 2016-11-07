@@ -10,7 +10,7 @@ Type.h
 #include <string>
 #include <vector>
 #include <map>
-#include "Keyword.h"
+#include "../MIS/Keyword.h"
 
 using namespace std;
 
@@ -18,8 +18,6 @@ using namespace std;
 
 class Type: public Keyword {
 private:
-	map * typeMap;
-
 public:
 	// Access Methods
 
@@ -37,8 +35,8 @@ public:
 	virtual void setValue( void* value_ptr) = 0;
 
 	// Other
-	virtual void initialize(vector dataList) = 0;
-	virtual Keyword * clone(vector dataList, map<string, Type*> &variableType) = 0;
+	virtual void initialize(vector<string> dataList, map<string, Type*> &typeVars, *Parser MISParser) = 0;
+	virtual Keyword * clone(vector<string> dataList, map<string, Type*> &typeVars, *Parser MISParser) = 0;
 	virtual void execute() = 0;
 };
 #endif //!TYPE_H

@@ -31,18 +31,18 @@ void Numeric::setValue(void* value_ptr){
 	number = *intPtr;
 }
 
-void Numeric::initialize(vector<string> dataList){
-	name = dataList[0];
-	number = dataList[1];
+void Numeric::initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
+	this->typeVars = typeVars;
+	name = dataList[VARIABLENAME];
+	number = stod(dataList[VARIABLEVALUE]);
 }
 
-Keyword * Numeric::clone(vector<string> dataList, map<string, Type*> &variableType){
-	typeMap = variableType;
+Keyword * Numeric::clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
 	Numeric * numeric = new Numeric();
 	numeric->initialize(dataList);
 	return numeric;
 }
 
 void Numeric::execute(){
-	typeMap[name] = this;
+	typeVars[name] = &this;
 }

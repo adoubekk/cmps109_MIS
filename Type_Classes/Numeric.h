@@ -11,6 +11,9 @@ Numeric.h
 #include <map>
 #include "Type.h"
 
+#define VARIABLENAME 1
+#define VARIABLEVALUE 2
+
 using namespace std;
 
 class Numeric: public Type{
@@ -18,7 +21,7 @@ private:
 	int number;
 	string name;
 	char myType;
-	map<string, Type *> &typeMap;
+	map<string, Type *> &typeVars;
 public:
 
 	
@@ -43,8 +46,8 @@ public:
 	virtual void setValue(void* value_ptr);
 
 	// Other
-	virtual void initialize(vector<string> dataList);
-	virtual Keyword * clone(vector<string> dataList, map<string, Type *> &variableType);
+	virtual void initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser);
+	virtual Keyword * clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser);
 	virtual void execute();
 
 };

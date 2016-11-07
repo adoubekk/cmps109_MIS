@@ -4,7 +4,9 @@
 //MIS Project
 //Reads in .mis files and returns appropriate information to the MIS system
 
-#pragma once
+#ifndef PARSER
+#define PARSER
+
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -23,3 +25,5 @@ class Parser{
       std::ifstream stream;
       std::vector<Label> labels;
 };
+
+#endif

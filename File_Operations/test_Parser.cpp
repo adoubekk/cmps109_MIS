@@ -1,10 +1,13 @@
 //test_Parser.cpp
 
+#ifndef TESTPARSER
+#define TESTPARSER
+
 #include "Jump/Jumps.h"
 #include "Parser.h"
 #include <iostream>
-#include "../Type_Classes/Numeric.h"
-#include "../Type_Classes/Real.h"
+//#include "../Type_Classes/Numeric.h"
+//#include "../Type_Classes/Real.h"
 
 using namespace std;
 
@@ -20,13 +23,13 @@ int main(){
 		}
 		cout << printVector(nextLine) <<endl;
    }
-   Real* R1 = new Real("R1", 2.0);
-   Real* R2 = new Real("R2", 2.0);
-   Numeric* N = new Numeric("N", 0);
-   JumpZ J("LAB1",myParser,N,true);
+   //Real* R1 = new Real("R1", 2.0);
+   //Real* R2 = new Real("R2", 2.0);
+   //Numeric* N = new Numeric("N", 0);
+  // JumpZ J("LAB1",myParser,N,true);
    Jump J2("LAB1",myParser);
-   JumpCp J3("LAB1",myParser,N,R2,JumpCp::GT);
-   J.execute();
+   //JumpCp J3("LAB1",myParser,N,R2,JumpCp::GT);
+   J2.execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();
@@ -46,3 +49,5 @@ string printVector(vector<string> line){
 	
 	return result;
 }
+
+#endif

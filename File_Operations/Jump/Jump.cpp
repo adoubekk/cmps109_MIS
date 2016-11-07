@@ -8,24 +8,28 @@
 
 using namespace std;
 
-Jump::Jump(string name, Parser* P_){
-   this->P = P_;
+Jump::Jump(string name, Parser* P){
+   this->P = P;
    this->name = name;
+}
+
+Jump::Jump(){
 }
 
 bool Jump::jumpCondition(){
    return true;
 }
 
-Keyword* clone(vector<string> rawData, map<string, Type*> &typeVars){
+Keyword* Jump::clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
    Jump * jump = new Jump();
-   jump->initialize(vector<string> rawData);
+   jump->initialize(rawData,typeVars,P);
    return jump;
 }
 
-void initialize(vector<std::string> rawData){
-   if (vector[1] != nullptr){
-      this->name = vector[1];
+void Jump::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
+   if (rawData.size() > 1){
+      this->name = rawData[1];
+      this->P = P;
    } else {
       //throw new SyntaxException()
    }

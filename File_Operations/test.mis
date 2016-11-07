@@ -4,8 +4,8 @@ SUB $myint,100,$myint2
 DIV $myfloat,100,$myint2
 ASSIGN $myint,$myint1
 ASSIGN $mystr1,$mystr2
-ASSIGN $mystr1,”This is a test string”
-SET_STR_CHAR $mystr1,21,’\n’
+ASSIGN $mystr1,?This is a test string?
+SET_STR_CHAR $mystr1,21,?\n?
 LABEL LAB1
 JMP LAB1
 JMPZ LAB1,$myint

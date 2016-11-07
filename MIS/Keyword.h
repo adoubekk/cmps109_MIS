@@ -1,6 +1,6 @@
 //Keyword.h
 //Aaron Doubek-Kraft, adoubekk@ucsc.edu
-// Abstract base class for all keywords processed by the MIS
+//Abstract base class for all keywords processed by the MIS
 
 #ifndef KEYWORD
 #define KEYWORD

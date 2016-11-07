@@ -10,11 +10,10 @@ Type.h
 #include <string>
 #include <vector>
 #include <map>
+#include "../File_Operations/Parser.h"
 #include "../MIS/Keyword.h"
 
 using namespace std;
-
-
 
 class Type: public Keyword {
 private:

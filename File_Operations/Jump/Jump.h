@@ -4,13 +4,13 @@
 //MIS Project
 //Jump to a specific label in the input stream of the parser passed in
 
-#pragma once
 #include "JumpOperation.h"
 
 class Jump: public JumpOperation{
    public:
-      Jump(std::string name, Parser* P_);
+      Jump(std::string name, Parser* P);
+      Jump();
       virtual bool jumpCondition();
-      virtual Keyword* clone(vector<std::string> rawData, map<std::string, Type*> &typeVars);
-      virtual void initialize(vector<std::string> rawData);
+      virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
+      virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
 };

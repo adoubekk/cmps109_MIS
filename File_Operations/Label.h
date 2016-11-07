@@ -4,7 +4,6 @@
 //MIS Project
 //Sets a label a specific place in the input stream
 
-#pragma once
 #include <string>
 
 class Label{

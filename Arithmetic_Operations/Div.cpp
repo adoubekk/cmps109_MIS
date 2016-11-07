@@ -2,6 +2,8 @@
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
 #include "../Type_Classes/Real.h"
+#include "../MIS/Keyword.h"
+#include "../File_Operations/Parser.h"
 #include "../Exceptions_Draft/ArithmeticException.h"
 #include <stdlib.h>
 #include <typeinfo>
@@ -91,7 +93,7 @@ void Div::execute(){
 	first_arg = NULL;
 }
 
-void Div::initialize(vector<string>& args, map<string, Type*>& variables){
+void Div::initialize(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
 	for(int i = 1; i < args.size(); i++){
 		string word = args[i];
 		char a;
@@ -118,9 +120,9 @@ void Div::initialize(vector<string>& args, map<string, Type*>& variables){
 
 }
 
-ArithmeticOperation* Div::clone(vector<string>& args, map<string, Type*>& variables){
+Keyword* Div::clone(vector<string>& args, map<string, Type*>& variables, Parser* MIS_Parser){
 	Div* div= new Div();
-	div->initialize(args, variables);
+	div->initialize(args, variables, NULL);
 	return div;
 
 }

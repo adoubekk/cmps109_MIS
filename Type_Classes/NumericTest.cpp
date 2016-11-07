@@ -18,9 +18,9 @@ int main(int argc, char* argv[]) {
 	Numeric* num;
 	string input = "10";
 	string variable = "testInt";
-	map<string, Type*> mapStub;
+	map<string, Type*> * mapStub;
 	vector<string> vectorStub;
-	Parser parserStub;
+	Parser * parserStub = 0;
 	int output;
 
 	// initiating vectorStub
@@ -35,9 +35,9 @@ int main(int argc, char* argv[]) {
 	cout << "execute(): storing object into map in MIS" << endl;
 	num->execute();
 	cout << "execute() end" << endl;
-	output = num->getValue();
+	num->getValue(&output);
 	cout << "value of Numeric is " << output << endl;
-	cout << "value stored in map is" << mapStub[variable] << endl;
+	cout << "value stored in map is" << (*mapStub)[variable] << endl;
 
 	// Teardown
 	delete num;

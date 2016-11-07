@@ -3,7 +3,13 @@
 
 using namespace std;
 
-Numeric::Numeric() {}
+Numeric::Numeric(){
+	myType = 'N';
+	name = "";
+	number = 0;
+	varMap = nullptr;
+
+}
 
 Numeric::Numeric(string varName, int value){
 	myType = 'N';
@@ -32,17 +38,17 @@ void Numeric::setValue(void* value_ptr){
 }
 
 void Numeric::initialize(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
-	this->typeVars = typeVars;
+	varMap = typeVars;
 	name = dataList[VARIABLENAME];
 	number = stod(dataList[VARIABLEVALUE]);
 }
 
 Keyword * Numeric::clone(vector<string> dataList, map<string, Type*> * typeVars, Parser * MISParser){
 	Numeric * numeric = new Numeric();
-	numeric->initialize(dataList);
+	numeric->initialize(dataList, typeVars, MISParser);
 	return numeric;
 }
 
 void Numeric::execute(){
-	typeVars[name] = &this;
+	(*varMap)[name] = this;
 }

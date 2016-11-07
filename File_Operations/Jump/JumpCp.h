@@ -17,8 +17,8 @@ class JumpCp: public JumpOperation{
       JumpCp (std::string name, Parser* P_, Type* Var1, Type* Var2, Logic L);
       JumpCp ();
       virtual bool jumpCondition();
-      virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
-      virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
+      virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P);
+      virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P);
    private:
       Type* Var1;
       Type* Var2;

@@ -20,13 +20,13 @@ bool Jump::jumpCondition(){
    return true;
 }
 
-Keyword* Jump::clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
+Keyword* Jump::clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
    Jump * jump = new Jump();
    jump->initialize(rawData,typeVars,P);
    return jump;
 }
 
-void Jump::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
+void Jump::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
    if (rawData.size() > 1){
       this->name = rawData[1];
       this->P = P;

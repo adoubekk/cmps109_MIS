@@ -29,13 +29,13 @@ bool JumpZ::jumpCondition(){
    }
 }
 
-Keyword* JumpZ::clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
+Keyword* JumpZ::clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
    JumpZ * jump = new JumpZ();
    jump->initialize(rawData,typeVars,P);
    return jump;
 }
 
-void JumpZ::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P){
+void JumpZ::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
    if (rawData.size() > 1){
       this->name = rawData[1];
       this->P = P;

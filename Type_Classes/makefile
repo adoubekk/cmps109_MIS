@@ -5,6 +5,9 @@ all: TypeTest
 
 TypeTest: ${SRC}
 	g++ -std=gnu++14  ${SRC} -o TypeTest
+	
+NumericTest: NumericTest.cpp Numeric.cpp
+	g++ -std=gnu++14 NumericTest.cpp Numeric.cpp -o NumericTest
 
 debug: ${SRC}
 	echo << compiling with debugging info

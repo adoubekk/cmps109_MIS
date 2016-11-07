@@ -2,17 +2,24 @@
 //Aaron Doubek-Kraft, adoubekk@ucsc.edu
 // Abstract base class for all keywords processed by the MIS
 
-#pragma once
+#ifndef KEYWORD
+#define KEYWORD
+
 #include <map>
 #include <vector>
 #include <string>
-#include "../Type_Classes/Type.h"
+#include "../File_Operations/Parser.h"
+#include "Type.h"
 
-class Keyword {
+class Type;
+
+class Keyword{
    public:
-      virtual Keyword* clone(vector<std::string> rawData, map<std::string, Type*> &typeVars) = 0;
-      virtual void initialize(vector<std::string> rawData) = 0;
+      virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;
+      virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;
       virtual void execute() = 0;
    protected:
-      map<std::string, Type*> &typeVars;
+      std::map<std::string, Type*> *typeVars;
 };
+
+#endif

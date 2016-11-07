@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include "../File_Operations/Parser.h"
-#include "Type.h"
+#include "../Type_Classes/Type.h"
 
 class Type;
 

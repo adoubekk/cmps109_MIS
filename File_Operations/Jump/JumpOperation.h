@@ -14,8 +14,6 @@
 
 class JumpOperation: public Keyword{
    public:
-      //virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;
-      //virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P) = 0;
       virtual void execute() final;
       virtual bool jumpCondition() = 0;
    protected:

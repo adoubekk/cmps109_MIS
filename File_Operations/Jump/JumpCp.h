@@ -8,22 +8,19 @@
 
 #include <string>
 #include "JumpOperation.h"
-//#include "../../Type_Classes/Numeric.h"
-//#include "../../Type_Classes/Real.h"
+#include "../../Type_Classes/Numeric.h"
+#include "../../Type_Classes/Real.h"
 
 class JumpCp: public JumpOperation{
    public:
       enum Logic{GT,LT,GTE,LTE};
-      //JumpCp (std::string name, Parser* P_, Type* Var1, Type* Var2, Logic L);
-      JumpCp (std::string name, Parser* P_, double val1, double val2, Logic L);
+      JumpCp (std::string name, Parser* P_, Type* Var1, Type* Var2, Logic L);
       JumpCp ();
       virtual bool jumpCondition();
       virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
       virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
    private:
-      //Type* Var1;
-      //Type* Var2;
-      double val1;
-      double val2;
+      Type* Var1;
+      Type* Var2;
       Logic L;
 };

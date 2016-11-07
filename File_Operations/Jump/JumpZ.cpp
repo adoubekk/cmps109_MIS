@@ -9,39 +9,23 @@
 
 using namespace std;
 
-// JumpZ::JumpZ(string name, Parser* P_, Type* Var, bool Z){
-   // this->P = P_;
-   // this->name = name;
-   // this->Var = Var;
-   // this->Z = Z;
-// }
-
-JumpZ::JumpZ(string name, Parser* P_, double val, bool Z){
+JumpZ::JumpZ(string name, Parser* P_, Type* Var, bool Z){
    this->P = P_;
    this->name = name;
-   this->val = val;
+   this->Var = Var;
    this->Z = Z;
 }
 
+
 JumpZ::JumpZ(){}
 
-// bool JumpZ::jumpCondition(){
-   // double val;
-   // Var->getValue(&val);
-   // if (Z) {
-      // return (val == 0);
-   // } else {
-      // return (val != 0);
-   // }
-// }
-
 bool JumpZ::jumpCondition(){
-   //double val;
-   //Var->getValue(&val);
+   double val;
+   Var->getValue(&val);
    if (Z) {
-      return (this->val == 0);
+      return (val == 0);
    } else {
-      return (this->val != 0);
+      return (val != 0);
    }
 }
 

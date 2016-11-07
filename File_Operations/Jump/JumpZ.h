@@ -7,19 +7,17 @@
 
 #include <string>
 #include "JumpOperation.h"
-//#include "../../Type_Classes/Numeric.h"
-//#include "../../Type_Classes/Real.h"
+#include "../../Type_Classes/Numeric.h"
+#include "../../Type_Classes/Real.h"
 
 class JumpZ: public JumpOperation{
    public:
-      //JumpZ (std::string name, Parser* P_, Type* Var, bool Z);
-      JumpZ (std::string name, Parser* P_, double val, bool Z);
+      JumpZ (std::string name, Parser* P_, Type* Var, bool Z);
       JumpZ ();
       virtual bool jumpCondition();
       virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
       virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> *typeVars, Parser* P);
    private:
       Type* Var;
-      double val;
       bool Z;
 };

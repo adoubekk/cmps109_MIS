@@ -26,7 +26,7 @@ void Char::getValue(void * ptr){
 
 void Char::getType(void * ptr){
 	char* myChar = static_cast<char*>(ptr);
-	*myChar = value;
+	*myChar = myType;
 
 }
 

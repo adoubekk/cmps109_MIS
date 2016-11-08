@@ -20,13 +20,13 @@ void Out::initialize(vector<string> dataList, map<string, Type*> & typeVars, Par
 	for(int i = 1; i < dataList.size(); i++){
 		token = dataList[i];
 		if(token[0] == '$'){
-			cout << "Out.cpp printVariable()" << endl;
+			//cout << "Out.cpp printVariable()" << endl;
 			printVariable(token, typeVars);
 		}else if(token[0] == *singleQuote || token[0] == *doubleQuote){
-            cout << "Out.cpp printStringLiteral()" << endl;
+           // cout << "Out.cpp printStringLiteral()" << endl;
 			printStringLiteral(token);
 		}else{ // numeral value
-			cout << "Out.cpp printNumeralLiteral()" << endl;
+			//cout << "Out.cpp printNumeralLiteral()" << endl;
 			printNumeralLiteral(token);
 			cout<< endl;
 		}
@@ -45,15 +45,46 @@ void Out::execute(){
 }
 
 void Out::printVariable(string str, map<string, Type*> & typeVars){
-	if(typeVars.count(str) > 0){
-		Type * mapToken = typeVars[str];
-		string temp;
-	    mapToken->getValue(&targetValue);
-	    temp = targetValue.str();
-	    strStream << temp << endl;
-	}else{ // variable is not in the map
-		// throw nullVariableException()
-	}
+   	 Type* first;
+       char type1;
+       string var;
+       ostringstream convert;
+       
+       if (typeVars[str] != NULL){
+         first = typeVars[str];
+         first->getType(&type1);
+       } else {
+          //throw new argument exception
+          cout << "Not a valid variable" << endl;
+          return;
+       }
+       
+
+	    if(type1 == 'N'){
+         int a = 0;
+	    	first->getValue(&a);
+         convert << a;
+         var = convert.str();
+	    }
+	    if(type1 == 'R'){
+	    	double b = 0;
+	    	first->getValue(&b);
+         convert << b;
+         var = convert.str();
+	    }
+	    if(type1 == 'C'){
+	    	char c;
+	    	first->getValue(&c);
+         convert << c;
+         var = convert.str();
+	    }
+	    if(type1 == 'S'){
+	    	string d;
+	    	first->getValue(&d);
+         var = d;
+	    }
+  
+	   strStream << var << endl;
 }
 
 void Out::printStringLiteral(string str){

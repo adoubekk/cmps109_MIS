@@ -1,9 +1,9 @@
 #Makefile for Assignment 2, Problem 2
-SRC = main.cpp File_Operations/*.cpp File_Operations/Jump/*.cpp Arithmetic_Operations/*.cpp Exceptions_Draft/*.cpp Type_Classes/*.cpp MIS/MIS.cpp
+SRC = main.cpp File_Operations/*.cpp File_Operations/Jump/*.cpp Arithmetic_Operations/*.cpp Exceptions_Draft/*.cpp Type_Classes/*.cpp MIS/MIS.cpp MIS/Out.cpp
 
-all: Parser
+all: MIS_x
 
-Parser: ${SRC}
+MIS_x: ${SRC}
 	g++ -std=gnu++14 ${SRC} -o MIS_x
 
 debug: ${SRC}
@@ -13,4 +13,4 @@ debug: ${SRC}
 	gdb MIS_x
 
 clean:
-	rm -f MIS_x
+	rm -f MIS_x MIS.err

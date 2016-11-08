@@ -63,6 +63,8 @@ void String::setValue(void * ptr){
 	for(int i = 0; i < value.length(); i++){
 		sentenceSpace[i] = value[i];
 	}
+   
+   //this->value = string(sentenceSpace);
 }
 
 void String::setChar(int index, char c){

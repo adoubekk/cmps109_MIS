@@ -16,6 +16,7 @@ void JumpZNZ::initialize(std::vector<std::string> rawData, std::map<std::string,
    int val_N;
    string var_name;
    Type *Var;
+   bool temp_var=false;
    
    if (rawData.size() < 2) {
       //throw new expection ("not enough arugments")
@@ -31,8 +32,10 @@ void JumpZNZ::initialize(std::vector<std::string> rawData, std::map<std::string,
       Var = typeVars[var_name];
    } else if(strtod(var_name.c_str(), NULL)) { // if argument is a literal
       Var = new Real("tempR", strtod(var_name.c_str(), NULL));
+      temp_var = true;
    } else {
       //throw invalid argument type exception
+      return;
    }
    
    Var->getType(&type);
@@ -47,6 +50,7 @@ void JumpZNZ::initialize(std::vector<std::string> rawData, std::map<std::string,
    } else {
       //throw invalid type exception
    }
-   
-   delete (Var);
+   if (temp_var){
+      delete (Var);
+   }
 }

@@ -17,6 +17,7 @@ void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, 
    int val1_N,val2_N;
    string var1_name, var2_name;
    Type *Var1,*Var2;
+   bool var1_temp=false,var2_temp=false;
    
    if (rawData.size() < 3) {
       //throw new expection ("not enough arugments")
@@ -33,6 +34,7 @@ void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, 
       Var1 = typeVars[var1_name];
    } else if(strtod(var1_name.c_str(), NULL)) { // if argument is a literal
       Var1 = new Real("tempR", strtod(var1_name.c_str(), NULL));
+      var1_temp = true;
    } else {
       //throw invalid argument type exception
    }
@@ -41,6 +43,7 @@ void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, 
       Var2 = typeVars[var2_name];
    } else if(strtod(var2_name.c_str(), NULL)) {
       Var2 = new Real("tempR", strtod(var2_name.c_str(), NULL));
+      var2_temp=true;
    } else {
       //throw invalid argument type excpetion
    }
@@ -69,6 +72,11 @@ void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, 
       //throw invalid type exception
    }
    
-   delete (Var1);
-   delete (Var2);
+   if (var1_temp){
+      delete (Var1);
+   }
+   if (var2_temp){
+      delete (Var2);
+   }
+   
 }

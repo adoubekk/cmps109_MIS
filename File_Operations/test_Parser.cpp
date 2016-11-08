@@ -50,10 +50,16 @@ int main(){
    myLine3.push_back("JMPNZ");
    myLine3.push_back("LAB1");
    myLine3.push_back("$myVar1");
+   vector<string> myLine4;
+   myLine4.push_back("JMPGTE");
+   myLine4.push_back("LAB1");
+   myLine4.push_back("30.0");
+   myLine4.push_back("20");
    Keyword* K1 = Factory["JMP"]->clone(myLine1,Vars,myParser);
    Keyword* K2 = Factory["JMPLT"]->clone(myLine2,Vars,myParser);
    Keyword* K3 = Factory["JMPNZ"]->clone(myLine3,Vars,myParser);
-   K3->execute();
+   Keyword* K4 = Factory["JMPGT"]->clone(myLine4,Vars,myParser);
+   K4->execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

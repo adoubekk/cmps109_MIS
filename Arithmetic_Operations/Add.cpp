@@ -38,19 +38,25 @@ void Add::execute(){
 		if(globalCounter == 0 ){
 			first_arg = *it; // set temp to point to the first argument
 			first_arg->getType(&type1); // get type for exception purposes
+			if(type1 != 'N' && type1 != 'R'){
+				throw(ArithmeticException("Can only add numerics and reals"));
+				return;
+			}
+
 		}
 		if(globalCounter == 1){
 			second_arg = *it;
 			second_arg->getType(&type2);
-			if (type2 != type1 || type2 != 'N' && type2 != 'R'){ // type checking
-				throw(ArithmeticException("Can only add numerics and reals exclusively"));
+			if (type2 != 'N' && type2 != 'R'){ // type checking
+				throw(ArithmeticException("Can only add numerics and reals"));
 				return;
 			}
 
 			if(type2 == 'N'){
 			second_arg->getValue(&Nval);
+			val = Nval;
 		}else{
-			second_arg->getValue(&val);
+		second_arg->getValue(&val);
 		}
 
 		}
@@ -58,14 +64,14 @@ void Add::execute(){
 		else{
 			Type* other_arg = *it; // dereference it and add it with the next iteration dereferenced
 			other_arg->getType(&otherType);
-			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
+			if (otherType != 'N' && otherType != 'R'){
 				throw(ArithmeticException("Can only add numerics and reals exclusively"));
 				return;
 			}
 
-			if(otherType == 'N'){
+			if( otherType == 'N' ){
 			other_arg->getValue(&Nval2);
-			Nval += Nval2;
+			val += Nval2;
 		}else{
 			other_arg->getValue(&val2);
 			val += val2;
@@ -77,6 +83,7 @@ void Add::execute(){
 	}
 
 	if(type1 == 'N'){
+		Nval = val;
 	first_arg->setValue(&Nval);
 }else{
 	first_arg->setValue(&val);	
@@ -99,13 +106,9 @@ void Add::initialize(vector<string> args, map<string, Type*>& variables, Parser*
 		}
 		if(word[0] == '$' && variables[word] == NULL){throw(ArithmeticException("variable not found"));}
 		if(strtod(word.c_str(), NULL)){
-				if(a == 'N'){
-				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
-				this->variables.push_back(literalN);
-			}else{
 				Type* literalR = new Real("tempR", strtod(word.c_str(), NULL));
 				this->variables.push_back(literalR);
-			}
+			
 
 			}
 			

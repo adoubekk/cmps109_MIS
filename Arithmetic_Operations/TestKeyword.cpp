@@ -21,9 +21,9 @@ int main(){
 
 	map<string, Type*> Vars; // represents the variable storage in the MIS
 	Vars["$myVar1"] = new Numeric("var1" , 20.1);
-	Vars["$myVar2"] = new Numeric("var2", 30.1);
-	Vars["$myVar3"] = new Numeric("var3", 4.1);
-	Vars["$myVar4"] = new Numeric("var4", 1.1);
+	Vars["$myVar2"] = new Real("var2", 30.1);
+	Vars["$myVar3"] = new Real("var3", 4.5);
+	Vars["$myVar4"] = new Numeric("var4", 4.3);
 
 
 	vector<string> args; // string resembling .mis text
@@ -32,7 +32,7 @@ int main(){
 	args.push_back("$myVar2");
 	args.push_back("$myVar3");
 	args.push_back("$myVar4");
-	args.push_back("1.1");
+	args.push_back("1.15");
 
 	// check the keyWord map with "ADD"
 	
@@ -45,12 +45,14 @@ int main(){
 	cout << e.what() << endl;
 }
 
+
 	int a = 0;
 	Vars["$myVar1"]->getValue(&a);
 
 	cout << a << endl;
 	
-
+	
+	
 	//----------------------------------------------------------------------------------------
 
 	//Sub object clone
@@ -81,7 +83,7 @@ subArgs.pop_back();
 keywordObj2 = keywordObj2->clone(subArgs, Vars, NULL);
 
 try{
-	keywordObj2->execute();  // var1 = 30.1 - 4.1 = 26
+	keywordObj2->execute();  // var1 = 30 - 4.5 = 26
 }catch(exception& e){
 	cout << e.what() << endl;
 }
@@ -91,8 +93,9 @@ try{
 
 	Vars["$myVar1"]->getValue(&b);
 
-	cout << "after subtraction .. 30.1 - 4.1"<< endl;
+	cout << "after subtraction .. 30 - 4.5"<< endl;
 	cout << b << endl;
+	
 
 	//---------------------------------------------------------------------------------------------------
 // Mult object clone
@@ -107,6 +110,7 @@ try{
 } catch(exception& e){
 	cout << e.what() << endl;
 }
+
 
 	int c = 0;
 	Vars["$myVar1"]->getValue(&c);

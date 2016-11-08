@@ -43,19 +43,25 @@ void Div::execute(){
 			first_arg = *it; // set temp to point to the first argument
 			first_arg->getType(&type1);
 
+			if(type1 != 'N' && type1 != 'R'){
+				throw(ArithmeticException("Can only divide numerics and reals"));
+				return;
+			}
+
 		}
 		if(globalCounter == 1){
 			second_arg = *it;
 
 			second_arg->getType(&type2);
-			if(type1 != type2 || type2 != 'N' && type2 != 'R'){
-				throw(ArithmeticException("Can only divide numerics and reals exclusively"));
+			if(type2 != 'N' && type2 != 'R'){
+				throw(ArithmeticException("Can only divide numerics and reals"));
 				return;
 			}
 
 		 // if numeric use an integer pointer
 			if(type2 == 'N'){
 			second_arg->getValue(&Nval);
+			val = Nval;
 		}else{
 			second_arg->getValue(&val);
 		}
@@ -64,14 +70,14 @@ void Div::execute(){
 			Type* other_arg = *it; // dereference temp and divide it with the next iteration dereferenced
 
 			other_arg->getType(&otherType);
-			if (otherType != type1 || otherType != 'N' && otherType != 'R'){
-				throw(ArithmeticException("Can only divide numerics and reals exclusively"));
+			if (otherType != 'N' && otherType != 'R'){
+				throw(ArithmeticException("Can only divide numerics and reals"));
 				return;
 			}
 
 				if(otherType == 'N'){
 				other_arg->getValue(&Nval2);
-				Nval /= Nval2;
+				val /= Nval2;
 			}else{
 				other_arg->getValue(&val2);
 				val /= val2;
@@ -85,6 +91,7 @@ void Div::execute(){
 	}
 
 	if(type1 == 'N'){
+		Nval = val;
 	first_arg->setValue(&Nval);
 	}else{
 		first_arg->setValue(&val);
@@ -106,13 +113,9 @@ void Div::initialize(vector<string> args, map<string, Type*>& vars, Parser* MIS_
 		}
 		if(word[0] == '$' && vars[word] == NULL){throw(ArithmeticException("variable not found"));}
 		if(strtod(word.c_str(), NULL)){
-				if(a == 'N'){
-				Type* literalN = new Numeric("tempN", strtod(word.c_str(), NULL));
-				this->variables.push_back(literalN);
-			}else{
 				Type* literalR = new Real("tempR", strtod(word.c_str(), NULL));
 				this->variables.push_back(literalR);
-			}
+			
 
 			}
 			

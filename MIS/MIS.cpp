@@ -64,9 +64,9 @@ void MIS::run(){
             catch(exception& e){
                file << e.what() << endl;
             }
-            double val;
-            MIS_variables["$myint"]->getValue(&val);
-            cout << val << endl;
+            //char val;
+            //MIS_variables["$mychar1"]->getValue(&val);
+            //cout << val << endl;
          } else {
             file << "Unidentified Keyword" << endl;
          }

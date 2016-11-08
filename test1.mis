@@ -3,3 +3,4 @@ VAR $myint1,REAL,200
 VAR $myint2,REAL,300
 ADD $myint,100,$myint2
 MUL $myint,100,200
+ASSIGN $myint,$myint2

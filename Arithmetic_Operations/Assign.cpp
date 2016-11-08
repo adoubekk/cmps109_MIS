@@ -44,7 +44,7 @@ void Assign::execute(){
 	    	first->setValue(&b);
 	    }
 	    if(type1 == 'C'){
-	    	char c = 0;
+	    	char c;
 	    	second->getValue(&c);
 	    	first->setValue(&c);
 	    }
@@ -66,11 +66,10 @@ void Assign::initialize(vector<string> args, map<string, Type*>& vars, Parser* M
 		char a;
 		if(vars[word] != NULL){
 			if(word[0] == '$'){ // if the argument is a variable
-			Type* myType = vars[word];
-			myType->getType(&a);
-			this->variables.push_back(myType);
-		}
-
+            Type* myType = vars[word];
+            myType->getType(&a);
+            this->variables.push_back(myType);
+         }
 		}
 		if(word[0] == '$' && vars[word] == NULL){throw(ArithmeticException("variable not found"));}
 		if(strtod(word.c_str(), NULL)){

@@ -1,14 +1,14 @@
-//JumpZ.h
+//JumpLT.h
 //Aaron Doubek-Kraft, adoubekk@ucsc.edu
 //CMPS 109 Fall '16
 //MIS Project
-//Jump to a specific label in the input stream of the parser passed in
+//Jump to a specific label in the input stream if first argument is less than second
 
-#include "JumpZNZ.h"
+#include "JumpCp.h"
 
-class JumpZ: public JumpZNZ{
+class JumpLT: public JumpCp{
    public:
-      JumpZ ();
+      JumpLT();
       virtual bool jumpCondition();
       virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P);
 };

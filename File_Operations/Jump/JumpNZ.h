@@ -6,9 +6,9 @@
 
 #include "JumpZNZ.h"
 
-class JumpZ: public JumpZNZ{
+class JumpNZ: public JumpZNZ{
    public:
-      JumpZ ();
+      JumpNZ ();
       virtual bool jumpCondition();
       virtual Keyword* clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P);
 };

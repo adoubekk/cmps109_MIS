@@ -11,19 +11,39 @@
 
 using namespace std;
 
-JumpCp::JumpCp(string name, Parser* P_, Type* Var1, Type* Var2, Logic L){
-   this->P = P_;
-   this->name = name;
-   this->Var1 = Var1;
-   this->Var2 = Var2;
-   this->L = L;
-}
-
-bool JumpCp::jumpCondition(){
+void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
    char type1,type2;
    double val1_R,val2_R, val1,val2;
    int val1_N,val2_N;
-   bool result = false;
+   string var1_name, var2_name;
+   Type *Var1,*Var2;
+   
+   if (rawData.size() < 3) {
+      //throw new expection ("not enough arugments")
+      return;
+   }
+   
+   this->name = rawData[1];
+   this->P = P;
+   var1_name = rawData[2];
+   var2_name = rawData[3];
+   
+   //if argument names a variable
+   if (typeVars[var1_name] != NULL){  
+      Var1 = typeVars[var1_name];
+   } else if(strtod(var1_name.c_str(), NULL)) { // if argument is a literal
+      Var1 = new Real("tempR", strtod(var1_name.c_str(), NULL));
+   } else {
+      //throw invalid argument type exception
+   }
+   
+   if (typeVars[var2_name] != NULL){  
+      Var2 = typeVars[var2_name];
+   } else if(strtod(var2_name.c_str(), NULL)) {
+      Var2 = new Real("tempR", strtod(var2_name.c_str(), NULL));
+   } else {
+      //throw invalid argument type excpetion
+   }
    
    Var1->getType(&type1);
    Var2->getType(&type2);
@@ -31,55 +51,24 @@ bool JumpCp::jumpCondition(){
    //type safety checking
    if (type1 == 'R'){
       Var1->getValue(&val1_R);
-      val1 = val1_R;
+      this->val1 = val1_R;
    } else if (type1 == 'N'){
       Var1->getValue(&val1_N);
-      val1 = (double) val1_N;
+      this->val1 = (double) val1_N;
    } else {
       //throw invalid type exception
    }
    
    if (type2 == 'R'){
       Var2->getValue(&val2_R);
-      val2 = val2_R;
+      this->val2 = val2_R;
    } else if (type2 == 'N'){
       Var2->getValue(&val2_N);
-      val2 = (double) val2_N;
+      this->val2 = (double) val2_N;
    } else {
       //throw invalid type exception
    }
    
-   switch(this->L){
-      case JumpCp::GT:
-         result = (val1 > val2);
-         break;
-      case JumpCp::LT:
-         result = (val1 < val2);
-         break;
-      case JumpCp::GTE:
-         result = (val1 >= val2);
-         break;
-      case JumpCp::LTE:
-         result = (val1 <= val2);
-         break;
-   }
-   
-   return result;
-}
-
-JumpCp::JumpCp(){}
-
-Keyword* JumpCp::clone(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
-   JumpCp * jump = new JumpCp();
-   jump->initialize(rawData,typeVars,P);
-   return jump;
-}
-
-void JumpCp::initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P){
-   if (rawData.size() > 1){
-      this->name = rawData[1];
-      this->P = P;
-   } else {
-      //throw new SyntaxException()
-   }
+   delete (Var1);
+   delete (Var2);
 }

@@ -7,19 +7,19 @@
 //Logic can be GT(>) LT(<) GTE (>=) or LTE (<=)
 //Abstract Base Class for these four operations
 
-#ifndef JUMPCP
-#define JUMPCP
+#ifndef JUMPZNZ
+#define JUMPZNZ
 
 #include <string>
 #include "JumpOperation.h"
 #include "../../Type_Classes/Numeric.h"
 #include "../../Type_Classes/Real.h"
 
-class JumpCp: public JumpOperation{
+class JumpZNZ: public JumpOperation{
    public:
       virtual void initialize(std::vector<std::string> rawData, std::map<std::string, Type*> &typeVars, Parser* P);
    protected:
-      double val1, val2;
+      double val;
 };
 
 #endif

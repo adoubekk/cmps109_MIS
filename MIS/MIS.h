@@ -7,6 +7,10 @@
 
 using namespace std;
 
+class Parser;
+class Type;
+class Keyword;
+
 class MIS{
 
 private:

@@ -12,6 +12,8 @@
 #include "../MIS/Keyword.h"
 #include "Parser.h"
 
+class Parser;
+
 class Label: public Keyword{
    public:
       Label(int pos, std::string name);

@@ -11,4 +11,5 @@ void JumpOperation::execute() {
    if (this->jumpCondition()){
       P->goToLabel(name);
    }
+   delete (this);
 }

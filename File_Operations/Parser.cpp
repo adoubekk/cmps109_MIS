@@ -54,19 +54,29 @@ vector<string> Parser::getNextLine() {
 void Parser::goToLabel(string name){
    int len = labels.size();
    int pos;
+   bool found = false;
    for (int i = 0; i < len; i++) {
       if (name.compare(labels[i].nameOf()) == 0){
          pos = labels[i].getPosition();
+         found = true;
       }
    }
-	stream.clear(); //supposedly C++11 does this automatically, but seekg fails without this call if eof has been reached
-	stream.seekg(pos, stream.beg);
+   
+   if (found){
+      stream.clear(); //supposedly C++11 does this automatically, but seekg fails without this call if eof has been reached
+      stream.seekg(pos, stream.beg);
+   } else {
+      //throw new exception ("label does not exist");
+   }
 }
 
-void Parser::setLabel(string name){
-	int pos = stream.tellg();
-   Label L(pos,name);
-   labels.push_back(L);
+int Parser::getPosition(){
+   return stream.tellg();
+}
+
+//insert label into labels vector
+void Parser::insert(Label L){
+   this->labels.push_back(L);
 }
 
 //returns true if there are more characters to get in the file

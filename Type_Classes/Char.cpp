@@ -37,7 +37,7 @@ void Char::setValue(void * ptr){
 
 void Char::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	name = dataList[1];
-	value = dataList[2][0]; // char
+	value = dataList[3][0]; // char
 	typeVars[name] = this;
 
 }

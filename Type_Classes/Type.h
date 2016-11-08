@@ -13,6 +13,8 @@ Type.h
 #include "../File_Operations/Parser.h"
 #include "../MIS/Keyword.h"
 
+class Parser;
+
 using namespace std;
 
 class Type: virtual public Keyword {

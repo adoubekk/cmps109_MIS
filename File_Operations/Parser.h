@@ -13,14 +13,17 @@
 #include <vector>
 #include "Label.h"
 
+class Label; //forward declaration
+
 class Parser{
    public:
       Parser(std::string filename);
       ~Parser();
       std::vector<std::string> getNextLine();
       void goToLabel(std::string name);
-      void setLabel(std::string name);
       bool hasNextLine();
+      void insert(Label L);
+      int getPosition();
    private:
       std::ifstream stream;
       std::vector<Label> labels;

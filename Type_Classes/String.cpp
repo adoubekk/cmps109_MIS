@@ -77,9 +77,9 @@ void String::setChar(int index, char c){
 
 void String::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	name = dataList[1];
-	arraySize = strtod(dataList[2].c_str(),NULL);;
-	value = dataList[3];
-	length = dataList[3].length();
+	arraySize = strtod(dataList[3].c_str(),NULL);;
+	value = dataList[4];
+	length = dataList[4].length();
 	sentenceSpace= (char *) calloc(arraySize, sizeof(char));
 	for (int i = 0; i<value.length(); i++){
 		sentenceSpace[i]=value[i];

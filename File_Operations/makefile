@@ -8,7 +8,7 @@ Parser: ${SRC}
 
 debug: ${SRC}
 	echo << compiling with debugging info
-	g++ -std=gnu++14 -ggdb  ${SRCS} -o Parser
+	g++ -std=gnu++14 -ggdb  ${SRC} -o Parser
 	echo << starting gdb
 	gdb Parser
 

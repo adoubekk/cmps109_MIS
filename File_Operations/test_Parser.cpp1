@@ -30,11 +30,13 @@ int main(){
    Factory["JMPLT"] = new JumpLT();
    Factory["JMPZ"] = new JumpZ();
    Factory["JMPNZ"] = new JumpNZ();
+   Factory["LABEL"] = new Label();
    
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();
 		if (nextLine[0].compare("LABEL") == 0) {
-         myParser->setLabel(nextLine[1]);
+         Keyword* L = Factory["LABEL"]->clone(nextLine,Vars,myParser);
+         L->execute();
 		}
 		cout << printVector(nextLine) <<endl;
    }
@@ -50,10 +52,16 @@ int main(){
    myLine3.push_back("JMPNZ");
    myLine3.push_back("LAB1");
    myLine3.push_back("$myVar1");
+   vector<string> myLine4;
+   myLine4.push_back("JMPGTE");
+   myLine4.push_back("LAB1");
+   myLine4.push_back("30.0");
+   myLine4.push_back("20");
    Keyword* K1 = Factory["JMP"]->clone(myLine1,Vars,myParser);
    Keyword* K2 = Factory["JMPLT"]->clone(myLine2,Vars,myParser);
    Keyword* K3 = Factory["JMPNZ"]->clone(myLine3,Vars,myParser);
-   K3->execute();
+   Keyword* K4 = Factory["JMPGT"]->clone(myLine4,Vars,myParser);
+   K4->execute();
    cout << endl;
    while (myParser->hasNextLine()) {
 		nextLine = myParser->getNextLine();

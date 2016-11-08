@@ -1,4 +1,5 @@
 #include "MIS.h"
+#include <iostream>
 #include <stdlib.h>
 #include <string>
 
@@ -14,24 +15,31 @@ void MIS::makeParser(string fileName){
 
 }
 
-/*
+void MIS::run(){
 
-MIS::constructType(vector<string> RawInput){
-	
-		if(RawInput[0] == "NUMERIC"){
-			if (RawInput.size() != 3) {/*throw syntax error*} 
-			MIS_variables[RawInput[1]] = new Numeric(RawInput[1], RawInput[2]);
+	vector<string> args;
+
+	if(MIS_Parser == NULL){
+		cout << "parser has not been created" << endl;
+	}
+
+	while(MIS_Parser->hasNextLine()){
+		args = MIS_Parser->getNextLine();
+		Keyword* KeywordObj = Keyword_Factory[args[0]];
+		if(KeywordObj != NULL){
+			try{
+			KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
+			KeywordObj->execute();
 		}
-		if(RawInput[0] == "REAL"){
-			if (RawInput.size() != 3) {/*throw syntax error*} 
-			MIS_variables[RawInput[1]] = new Real(RawInput[1], RawInput[2]);
-				}
-		if(RawInput[0] == "CHAR"){
-			if (RawInput.size() != 3) {/*throw syntax error*} 
-			MIS_variables[RawInput[1]] = new Char(RawInput[1], RawInput[2]);
+		catch(exception& e){
+			cout << e.what() << endl;
 		}
-		if(RawInput[0] == "STRING"){
-			if (RawInput.size() != 4) {/*throw syntax error*}
-			MIS_variables[RawInput[1]] = new String(RawInput[1], RawInput[3], RawInput[2]);
+
 		}
-	} */
+		else{
+			cout << "Unidentified Keyword" << endl;
+		}
+
+
+	}
+}

@@ -1,3 +1,4 @@
+#include "Keyword"
 #include "../Type_Classes/Type.h"
 #include "../Type_Classes/Numeric.h"
 #include "../Type_Classes/Real.h"
@@ -10,3 +11,4 @@
 #include "../Arithmetic_Operations/Sub.h"
 #include "../Arithmetic_Operations/Mult.h"
 #include "../Arithmetic_Operations/Div.h"
+#include "../Arithmetic_Operations/Assign.h"

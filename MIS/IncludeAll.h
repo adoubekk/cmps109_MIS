@@ -11,4 +11,5 @@
 #include "../Arithmetic_Operations/Mult.h"
 #include "../Arithmetic_Operations/Div.h"
 #include "../Arithmetic_Operations/Assign.h"
+#include "../Arithmetic_Operations/GETSC.h"
 #include "Keyword.h"

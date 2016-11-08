@@ -37,7 +37,7 @@ void Real::setValue(void * ptr) {
 
 void Real::initialize(vector<string> dataList, map<string, Type*> &typeVars, Parser* MIS_Parser){
 	name = dataList[1];
-	number = strtod(dataList[2].c_str(),NULL);
+	number = strtod(dataList[3].c_str(),NULL);
 	typeVars[name] = this;
 }
 

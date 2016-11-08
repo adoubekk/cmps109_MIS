@@ -11,8 +11,9 @@ int main(int argc, char* argv[]){
       cout << "Usage: MIS filename" << endl;
       return -1;
    }
-   filename = argv[0];
+   filename = argv[1];
    MIS* myMIS = new MIS();
+   cout << filename << endl;
    try {
       myMIS->makeParser(filename);
    } catch (exception& e) {

@@ -42,7 +42,7 @@ void Numeric::initialize(vector<string> dataList, map<string, Type*>& typeVars, 
 	//mymap.insert ( std::pair<char,int>('a',100) )
 	//map<string, Type*> vars = * typeVars;
 	name = dataList[1];
-	number = strtod(dataList[2].c_str(),NULL);
+	number = strtod(dataList[3].c_str(),NULL);
 	typeVars[name] = this;
 }
 

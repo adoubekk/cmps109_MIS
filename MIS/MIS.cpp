@@ -17,7 +17,7 @@ MIS::MIS(){
    Keyword_Factory["ASSIGN"] = new Assign();
    //Keyword_Factory["OUT"] = new Out();
    //Keyword_Factory["SET_STR_CHAR"] = new SetStrChar();
-   //Keyword_Factory["GET_STR_CHAR"] = new GetStrChar();
+   Keyword_Factory["GET_STR_CHAR"] = new GETSC();
    Keyword_Factory["JMP"] = new Jump();
    Keyword_Factory["JMPGTE"] = new JumpGTE();
    Keyword_Factory["JMPLTE"] = new JumpLTE();
@@ -47,18 +47,21 @@ void MIS::run(){
 
 	while(MIS_Parser->hasNextLine()){
 		args = MIS_Parser->getNextLine();
-		Keyword* KeywordObj = Keyword_Factory[args[0]];
+      Keyword* KeywordObj;
+      if (args[0] == "VAR"){ 
+         KeywordObj = Keyword_Factory[args[2]];
+      } else {
+         KeywordObj = Keyword_Factory[args[0]];
+      }
 		if(KeywordObj != NULL){
 			try{
-			KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
-			KeywordObj->execute();
-		}
-		catch(exception& e){
-			cout << e.what() << endl;
-		}
-
-		}
-		else{
+            KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
+            KeywordObj->execute();
+         }
+         catch(exception& e){
+            cout << e.what() << endl;
+         }
+		} else {
 			cout << "Unidentified Keyword" << endl;
 		}
 

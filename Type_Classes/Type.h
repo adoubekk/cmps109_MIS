@@ -15,7 +15,7 @@ Type.h
 
 using namespace std;
 
-class Type: public Keyword {
+class Type: virtual public Keyword {
 private:
 public:
 	// Access Methods

@@ -13,7 +13,7 @@ Numeric.h
 
 using namespace std;
 
-class Real: public Type{
+class Real: virtual public Type{
 private:
 	double number;
 	string name;

@@ -12,7 +12,7 @@ Char.h
 
 using namespace std;
 
-class Char : public Type{
+class Char : virtual public Type{
 private:
 	char value;
 	string name;

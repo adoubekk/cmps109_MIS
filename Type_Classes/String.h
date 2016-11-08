@@ -12,7 +12,7 @@ String.h
 
 using namespace std;
 
-class String : public Type {
+class String : virtual public Type {
 private:
 	int arraySize;
 	int length;

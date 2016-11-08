@@ -12,6 +12,7 @@
 #include "../Type_Classes/Type.h"
 
 class Type;
+class Parser;
 
 class Keyword{
    public:

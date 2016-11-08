@@ -1,5 +1,6 @@
 #include "MIS.h"
 #include <iostream>
+#include <fstream>
 #include <stdlib.h>
 #include <string>
 
@@ -13,7 +14,7 @@ MIS::MIS(){
    Keyword_Factory["ADD"] = new Add();
    Keyword_Factory["SUB"] = new Sub();
    Keyword_Factory["DIV"] = new Div();
-   Keyword_Factory["MULT"] = new Mult();
+   Keyword_Factory["MUL"] = new Mult();
    Keyword_Factory["ASSIGN"] = new Assign();
    //Keyword_Factory["OUT"] = new Out();
    //Keyword_Factory["SET_STR_CHAR"] = new SetStrChar();
@@ -40,31 +41,36 @@ void MIS::makeParser(string fileName){
 void MIS::run(){
 
 	vector<string> args;
+   ofstream file;
+   file.open("MIS.err");
 
 	if(MIS_Parser == NULL){
 		cout << "parser has not been created" << endl;
-	}
+   } else {
+      while(MIS_Parser->hasNextLine()){
+         args = MIS_Parser->getNextLine();
+         Keyword* KeywordObj;
+         if (args[0] == "VAR"){ 
+            KeywordObj = Keyword_Factory[args[2]];
+         } else {
+            KeywordObj = Keyword_Factory[args[0]];
+         }
 
-	while(MIS_Parser->hasNextLine()){
-		args = MIS_Parser->getNextLine();
-      Keyword* KeywordObj;
-      if (args[0] == "VAR"){ 
-         KeywordObj = Keyword_Factory[args[2]];
-      } else {
-         KeywordObj = Keyword_Factory[args[0]];
+         if(KeywordObj != NULL){
+            try{
+               KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
+               KeywordObj->execute();
+            }
+            catch(exception& e){
+               file << e.what() << endl;
+            }
+            double val;
+            MIS_variables["$myint"]->getValue(&val);
+            cout << val << endl;
+         } else {
+            file << "Unidentified Keyword" << endl;
+         }
       }
-		if(KeywordObj != NULL){
-			try{
-            KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
-            KeywordObj->execute();
-         }
-         catch(exception& e){
-            cout << e.what() << endl;
-         }
-		} else {
-			cout << "Unidentified Keyword" << endl;
-		}
-
-
 	}
+   file.close();
 }

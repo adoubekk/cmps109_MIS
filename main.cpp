@@ -13,7 +13,6 @@ int main(int argc, char* argv[]){
    }
    filename = argv[1];
    MIS* myMIS = new MIS();
-   cout << filename << endl;
    try {
       myMIS->makeParser(filename);
    } catch (exception& e) {

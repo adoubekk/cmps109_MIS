@@ -49,7 +49,7 @@ void Assign::execute(){
 	    	first->setValue(&c);
 	    }
 	    if(type1 == 'S'){
-	    	string d = 0;
+	    	string d;
 	    	second->getValue(&d);
 	    	first->setValue(&d);
 	    }
@@ -90,7 +90,7 @@ void Assign::initialize(vector<string> args, map<string, Type*>& vars, Parser* M
 				this->variables.push_back(literalS);
 			}
 
-			}
+		}
 			
 	}
 

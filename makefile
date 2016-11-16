@@ -1,5 +1,5 @@
 #Makefile for Assignment 2, Problem 2
-SRC = main.cpp File_Operations/*.cpp File_Operations/Jump/*.cpp Arithmetic_Operations/*.cpp Exceptions_Draft/*.cpp Type_Classes/*.cpp MIS/MIS.cpp MIS/Out.cpp
+SRC = main.cpp File_Operations/*.cpp File_Operations/Jump/*.cpp Arithmetic_Operations/*.cpp Exceptions_Draft/*.cpp Type_Classes/*.cpp MIS/MIS.cpp MIS/Out.cpp MIS/Sleep.cpp
 
 all: MIS_x
 

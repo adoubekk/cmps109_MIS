@@ -13,4 +13,5 @@
 #include "../Arithmetic_Operations/Assign.h"
 #include "../Arithmetic_Operations/GETSC.h"
 #include "Out.h"
+#include "Sleep.h"
 #include "Keyword.h"

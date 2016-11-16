@@ -27,7 +27,7 @@ MIS::MIS(){
    Keyword_Factory["JMPZ"] = new JumpZ();
    Keyword_Factory["JMPNZ"] = new JumpNZ();
    Keyword_Factory["LABEL"] = new Label();
-   //Keyword_Factory["SLEEP"] = new Sleep();   
+   Keyword_Factory["SLEEP"] = new Sleep();   
 };
 
 MIS::~MIS(){

@@ -17,7 +17,7 @@ MIS::MIS(){
    Keyword_Factory["MUL"] = new Mult();
    Keyword_Factory["ASSIGN"] = new Assign();
    Keyword_Factory["OUT"] = new Out();
-   //Keyword_Factory["SET_STR_CHAR"] = new SetStrChar();
+   Keyword_Factory["SET_STR_CHAR"] = new SETSC();
    Keyword_Factory["GET_STR_CHAR"] = new GETSC();
    Keyword_Factory["JMP"] = new Jump();
    Keyword_Factory["JMPGTE"] = new JumpGTE();

@@ -12,6 +12,7 @@
 #include "../Arithmetic_Operations/Div.h"
 #include "../Arithmetic_Operations/Assign.h"
 #include "../Arithmetic_Operations/GETSC.h"
+#include "../Arithmetic_Operations/SETSC.h"
 #include "Out.h"
 #include "Sleep.h"
 #include "Keyword.h"

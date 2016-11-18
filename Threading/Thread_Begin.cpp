@@ -4,14 +4,16 @@
 
 void Thread_Begin::execute(){} // instantiate the thread
 
-void runThread(map<string, Type*>& variables){} // thread function
+void Thread_Begin::runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>& variables,mutex& m,int& count, vector<thread>& threads){} // thread function; pass references to the data and mutex, don't lock the mutex before looping.
 
 void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
+
+
 
 	while(MIS_Parser->hasNextLine()){
 		int lineSize = 0;
         args = MIS_Parser->getNextLine();
-        if(args[0] = "THREAD_END"){
+        if(args[0] == "THREAD_END"){
         	break;
         }
         else{
@@ -31,7 +33,7 @@ void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables
 
 }
 
-Keyword* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
+Thread_Begin* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser){
 	Thread_Begin* newThread = new Thread_Begin();
 	newThread->initialize(args, variables, MIS_Parser);
 	return newThread;

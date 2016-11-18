@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <vector>
 #include <map>
+#include <mutex>
+#include <thread>
 
 #include "IncludeAll.h"
 
@@ -18,6 +20,10 @@ private:
 	//map<int, Parser* > MIS_Parsers; // for multithreading
 	map<string, Type* > MIS_variables; // a map structure for holding the names of our variables; should always be a Type*.
 	map<string, Keyword *> Keyword_Factory; // a map structure which should be build at the start of the lifetime of the MIS; holds all keywords
+
+	vector<thread> Threads;
+	mutex m; // mutex to assure that threads don't change the same variables simultaneously 
+	int threadCounter;
 
 public:
 

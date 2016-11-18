@@ -7,13 +7,15 @@
 #include <vector>
 #include <map>
 #include <stdlib.h>
+#include <thread>
+#include <mutex>
 
 
 using namespace std;
 
-class Thread_Begin : public Keyword{
+class Thread_Begin{
 private:
-	vector<Type *> instructions; 
+	vector<string> instructions; 
 	map<string, Type *> * Mis_Vars;
 
 	map<string, Keyword *> Keyword_Factory;
@@ -27,9 +29,9 @@ public:
 
     void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
 
-    Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
+    Thread_Begin* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
 
-    void runThread(map<string, Type*>& variables);
+    void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>& variables,mutex& m,int& threadCount, vector<thread>& threads);
 
 };
 

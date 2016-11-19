@@ -68,14 +68,16 @@ void MIS::run(){
                KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
                KeywordObj->execute();
             }
-            catch(exception& e){
+            catch(exception & e){
                file << e.what() << endl;
             }
             //char val;
             //MIS_variables["$mychar1"]->getValue(&val);
             //cout << val << endl;
          } else {
-            file << "Unidentified Keyword" << endl;
+            catch(InvalidKeywordException & e){
+            	file << e.what() << endl;
+            }
          }
       }
 	}

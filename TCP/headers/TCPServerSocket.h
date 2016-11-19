@@ -4,7 +4,6 @@
 #include "includes.h"
 #include "TCPSocket.h"
 
-
 class TCPServerSocket // TCP Server Socket
 {
 	private:

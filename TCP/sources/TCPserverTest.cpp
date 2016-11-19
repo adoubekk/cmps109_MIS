@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 
-	char buffer[1024];
+	string data;
 
 	TCPServerSocket* ServerSock = new TCPServerSocket("127.0.0.1", 5532, 10);
 
@@ -15,10 +15,8 @@ int main(){
 
 	TCPSocket* Sock1 = ServerSock->getConnection();
 
-	Sock1->readFromSocket(buffer, 1024);
+	Sock1->readFromSocket(data, 1024);
 
-	for(int i= 0; i < 10; i++){
-		cout << buffer[i] << endl;
-	}
+	cout << string << endl;
 
 }

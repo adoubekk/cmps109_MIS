@@ -16,7 +16,7 @@ public:
 
 	~ArithmeticException() throw();
 
-	const string GetMessage() const throw();
+	const string what() const throw();
 }
 
 #endif // INVALIDINDEXEXCEPTION_H

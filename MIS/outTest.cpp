@@ -21,14 +21,20 @@ int main(){
 	Out * testTarget;
 	map<string, Type*> mapStub;
 	vector<string> vectorStub;
+	vector<string> lineVector;
 	int first = 1;
 	double second = 2.5;
 	char third = '3';
 	string fourth = "four";
 
+	// lineVector
+	lineVector.push_back("")
+
 	// Variable Storage Setup
 	cout << "creating first Numeric Object" << endl;
-	mapStub["$first"] = new Numeric();
+	Numeric First = new Numeric();
+	First->clone(lineVector);
+
 	cout << "setting value to object" << endl;
 	mapStub["$first"]->setValue(&first);
 	cout << "first Numeric Object complete" << endl;

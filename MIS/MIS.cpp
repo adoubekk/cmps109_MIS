@@ -75,8 +75,7 @@ void MIS::run(){
             //MIS_variables["$mychar1"]->getValue(&val);
             //cout << val << endl;
          } else {
-            catch(InvalidKeywordException & e){
-            	file << e.what() << endl;
+            file << "Keyword does not exist." << endl;
             }
          }
       }

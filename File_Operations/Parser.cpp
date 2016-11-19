@@ -24,19 +24,19 @@ vector<string> Parser::getNextLine() {
    vector<string> line;
    stringbuf sb(ios_base::in | ios_base::out);
    
-   stream.get(sb,' '); //extract the function type
-   stream.ignore(1); //skip space character
-   line.push_back(sb.str()); //push it to vector
+   //stream.get(sb,' '); //extract the function type
+   //stream.ignore(1); //skip space character
+   //line.push_back(sb.str()); //push it to vector
    
    sb.str(""); //clear stringbuffer
    
    stream.get(sb,'\n'); //extract other data
    stream.ignore(1); //skip newline character
-   
+
    //store each token to vector, delimiting by ','
    int start = 0, len = 0, n = sb.str().length();
    for (int i = 0; i < n; i++){
-      if (sb.str()[i] == ','){
+      if (sb.str()[i] == ',' || sb.str()[i] == ' '){
          line.push_back(sb.str().substr(start,len));
 		 start = i+1;
 		 len = 0;

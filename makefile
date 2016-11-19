@@ -8,7 +8,7 @@ MIS_x: ${SRC}
 
 debug: ${SRC}
 	echo << compiling with debugging info
-	g++ -std=gnu++14 -ggdb  ${SRC} -o MIS_x
+	g++ -std=gnu++14 -ggdb  ${SRC} -o MIS_x -pthread
 	echo << starting gdb
 	gdb MIS_x
 

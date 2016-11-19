@@ -23,7 +23,6 @@ private:
 
 	vector<thread> Threads;
 	mutex m; // mutex to assure that threads don't change the same variables simultaneously 
-	int threadCounter;
 
 public:
 

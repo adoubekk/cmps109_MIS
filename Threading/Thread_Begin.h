@@ -20,18 +20,15 @@ private:
 
 	map<string, Keyword *> Keyword_Factory;
 
-	thread FactoryThread;
+	//thread Factory_Thread;
 public:
 	
 
+    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads);
 
-    void execute(); // instantiate the thread
+    Thread_Begin* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads);
 
-    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
-
-    Thread_Begin* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser);
-
-    void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>& variables,mutex& m,int& threadCount, vector<thread>& threads);
+   // void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>& variables,mutex& m, vector<thread>& threads);
 
 };
 

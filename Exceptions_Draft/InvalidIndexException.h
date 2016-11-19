@@ -14,7 +14,7 @@ private:
 public:
 	InvalidIndexException(string Estr);
 
-	~ArithmeticException() throw();
+	~InvalidIndexException() throw();
 
 	const string what() const throw();
 }

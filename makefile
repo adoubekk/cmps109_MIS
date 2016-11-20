@@ -4,7 +4,7 @@ SRC = main.cpp File_Operations/*.cpp File_Operations/Jump/*.cpp Arithmetic_Opera
 all: MIS_x
 
 MIS_x: ${SRC}
-	g++ -std=gnu++14 ${SRC} -o MIS_x
+	g++ -std=gnu++14 ${SRC} -o MIS_x -pthread
 
 debug: ${SRC}
 	echo << compiling with debugging info

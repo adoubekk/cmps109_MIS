@@ -6,7 +6,7 @@
 
 using namespace std;
 
-MIS::MIS(): threadCounter(0){
+MIS::MIS(){
    Keyword_Factory["NUMERIC"] = new Numeric();
    Keyword_Factory["REAL"] = new Real();
    Keyword_Factory["CHAR"] = new Char();
@@ -53,8 +53,8 @@ void MIS::run(){
          Keyword* KeywordObj;
          if(args[0] == "THREAD_BEGIN"){ // pass thread vector and thread_id
             Thread_Begin* myThread = new Thread_Begin();
-            myThread = myThread->clone(args, MIS_variables, MIS_Parser);
-            myThread->runThread(Keyword_Factory, MIS_variables,m, threadCounter, Threads);
+            myThread = myThread->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, m, Threads);
+            
 
          }
          if (args[0] == "VAR"){ 

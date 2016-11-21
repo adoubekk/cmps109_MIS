@@ -5,19 +5,18 @@ using namespace std;
 
 static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>& variables,mutex& m, vector<thread>& threads, Parser* MIS_Parser, vector<string>& instructions){
 
-  cout << "in run" << endl;
+  //cout << "in run" << endl;
   vector<string> tempArgs;
   int size = instructions.size();
 
-  cout << "whats in instructions: " << endl;
+  //cout << "whats in instructions: " << endl; TESTING PURPOSES
 
   Keyword* KeywordObj;
 
   for(int i = 0; i < size; i++){
 
-    //cout << "inside of the thread" << endl;
 
-    cout << i << "  " << instructions[i] << endl;
+    //cout << i << "  " << instructions[i] << endl; TESTING PURPOSES 
 
     if(instructions[i] == "END_INSTRUCTION"){
      // cout << "tempArgs[0] " << tempArgs[0] << endl;
@@ -29,8 +28,10 @@ static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>&
 
          if(KeywordObj != NULL){
             try{
+              m.lock();
                KeywordObj = KeywordObj->clone(tempArgs, variables, MIS_Parser);
                KeywordObj->execute();
+               m.unlock();
             }
             catch(exception& e){
               // file << e.what() << endl;
@@ -47,19 +48,20 @@ static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Type*>&
 } // thread function; pass references to the data and mutex, don't lock the mutex before looping.
 
 
-void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads){
-
-  cout << "in initialize" << endl;
+void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars){
+  this->thread_id = thread_id;
+  //cout << "in initialize" << endl; TESTING PURPOSES
 	while(MIS_Parser->hasNextLine()){
 		int lineSize = 0;
         args = MIS_Parser->getNextLine();
-        if(args[0] == "THREAD_EN"){
+        if(args[0] == "THREAD_END"){ 
+          //cout << "found end" << endl;
         	break;
         }
         else{
         	lineSize = args.size();
         	for(int i = 0; i < lineSize ; i++){
-            cout << "arg " << i<< args[i] << endl; 
+            //cout << "arg " << i<< args[i] << endl; TESING PURPOSES 
         		instructions.push_back(args[i]); // push back instructions
         	}
         	instructions.push_back("END_INSTRUCTION");
@@ -75,8 +77,10 @@ void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables
 }
 
 // Pass in regular data along with threading variables/structures
-Thread_Begin* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads){
-	Thread_Begin* newThread = new Thread_Begin();
-	newThread->initialize(args, variables, MIS_Parser, Keyword_Factory, m, threads);
+Threading_Keyword* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars){
+	Threading_Keyword* newThread = new Thread_Begin();
+	newThread->initialize(args, variables, MIS_Parser, Keyword_Factory, m, threads, thread_id, Locked_Vars);
 	return newThread;
 }
+
+void Thread_Begin::execute(){}

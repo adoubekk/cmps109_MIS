@@ -12,6 +12,7 @@ using namespace std;
 class Parser;
 class Type;
 class Keyword;
+class Threading_Keyword;
 
 class MIS{
 
@@ -21,8 +22,11 @@ private:
 	map<string, Type* > MIS_variables; // a map structure for holding the names of our variables; should always be a Type*.
 	map<string, Keyword *> Keyword_Factory; // a map structure which should be build at the start of the lifetime of the MIS; holds all keywords
 
+	map<string, Threading_Keyword*> Thread_Factory;
+	map<string, int > Locked_Vars;
 	vector<thread> Threads;
 	mutex m; // mutex to assure that threads don't change the same variables simultaneously 
+	int Thread_id;
 
 public:
 

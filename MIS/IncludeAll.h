@@ -14,6 +14,7 @@
 #include "../Arithmetic_Operations/GETSC.h"
 #include "../Arithmetic_Operations/SETSC.h"
 #include "../Threading/Thread_Begin.h"
+#include "../Threading/Threading_Keyword.h"
 #include "Out.h"
 #include "Sleep.h"
 #include "Keyword.h"

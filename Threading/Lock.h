@@ -1,5 +1,5 @@
-#ifndef THREAD_BEGIN_H
-#define THREAD_BEGIN_H
+#ifndef LOCK_H
+#define LOCK_H
 
 #include "../Type_Classes/Type.h"
 #include "../MIS/Keyword.h"
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class Thread_Begin : public Threading_Keyword{
+class Lock : public Threading_Keyword{
 private:
 	vector<string> instructions; 
 	map<string, Type *> * Mis_Vars;
@@ -22,13 +22,12 @@ private:
 	map<string, Keyword *> Keyword_Factory;
 
 	//thread Factory_Thread;
-	int thread_id;
 public:
 	
 
-    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars);
+    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars);
 
-    Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars);
+    Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars);
 
     void execute();
 

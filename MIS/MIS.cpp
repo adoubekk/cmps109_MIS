@@ -28,6 +28,8 @@ MIS::MIS(){
    Keyword_Factory["JMPNZ"] = new JumpNZ();
    Keyword_Factory["LABEL"] = new Label();
    Keyword_Factory["SLEEP"] = new Sleep();
+
+   Thread_Factory["THREAD_BEGIN"] = new Thread_Begin();
       
 };
 
@@ -52,12 +54,13 @@ void MIS::run(){
       while(MIS_Parser->hasNextLine()){
          args = MIS_Parser->getNextLine();
          Keyword* KeywordObj;
-         if(args[0] == "THREAD_BEGIN"){ // pass thread vector and thread_id
+         Threading_Keyword* ThreadObj;
+         /*if(args[0] == "THREAD_BEGIN"){ // pass thread vector and thread_id
             Thread_Begin* myThread = new Thread_Begin();
             myThread = myThread->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, m, Threads);
             
 
-         }
+         }*/
          if (args[0] == "VAR"){ 
             KeywordObj = Keyword_Factory[args[2]];
          } else {
@@ -75,6 +78,15 @@ void MIS::run(){
             //char val;
             //MIS_variables["$mychar1"]->getValue(&val);
             //cout << val << endl;
+         }if(ThreadObj != NULL && KeywordObj == NULL){ 
+               cout << "keyObj is NULL, threadObj not NUll" << endl;  
+               //ThreadObj = Thread_Factory[args[0]];
+               if(args[0] == "THREAD_BEGIN"){
+                  Thread_id++; // thread counter is used to ID the threads
+               }
+               ThreadObj = ThreadObj->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, m, Threads, Thread_id, Locked_Vars);
+               ThreadObj->execute();
+
          } else {
             file << "Keyword does not exist." << endl;
             }

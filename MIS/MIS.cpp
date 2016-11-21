@@ -65,6 +65,7 @@ void MIS::run(){
             KeywordObj = Keyword_Factory[args[2]];
          } else {
             KeywordObj = Keyword_Factory[args[0]];
+            ThreadObj = Thread_Factory[args[0]];
          }
 
          if(KeywordObj != NULL){

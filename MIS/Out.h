@@ -23,6 +23,7 @@ private:
 	ostringstream targetValue;
 	const char * singleQuote = "'";
 	const char * doubleQuote = "\"";
+   string filename;
 public:
 	// Constructor-Destructor
 	Out();

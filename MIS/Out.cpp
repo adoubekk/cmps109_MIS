@@ -31,17 +31,22 @@ void Out::initialize(vector<string> dataList, map<string, Type*> & typeVars, Par
 			cout<< endl;
 		}
 	}
+   this->filename = MISParser->getName();
 	outString = strStream.str();
 }
 
 Keyword * Out::clone(vector<string> dataList, map<string, Type*> & typeVars, Parser * MISParser){
 	Out * out = new Out();
-	out->initialize(dataList, typeVars, NULL);
+	out->initialize(dataList, typeVars, MISParser);
 	return out;
 }
 
 void Out::execute(){
-	cout << outString;
+   string out_name = this->filename + ".out";
+   ofstream out_file; //open temporary file to store program output
+   out_file.open(out_name, ofstream::app); //open file with append flag
+   out_file << outString; //write output string to file
+   out_file.close();
 }
 
 void Out::printVariable(string str, map<string, Type*> & typeVars){
@@ -58,7 +63,6 @@ void Out::printVariable(string str, map<string, Type*> & typeVars){
           cout << "Not a valid variable" << endl;
           return;
        }
-       
 
 	    if(type1 == 'N'){
          int a = 0;

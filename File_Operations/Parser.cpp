@@ -12,6 +12,7 @@ using namespace std;
 //construct a parser object from the provided filename
 Parser::Parser(string filename){
    this->stream = ifstream(filename,ifstream::in);
+   this->name = filename;
 }
 
 //close input stream on destruct
@@ -24,16 +25,12 @@ vector<string> Parser::getNextLine() {
    vector<string> line;
    stringbuf sb(ios_base::in | ios_base::out);
    
-   //stream.get(sb,' '); //extract the function type
-   //stream.ignore(1); //skip space character
-   //line.push_back(sb.str()); //push it to vector
-   
    sb.str(""); //clear stringbuffer
    
    stream.get(sb,'\n'); //extract other data
    stream.ignore(1); //skip newline character
 
-   //store each token to vector, delimiting by ','
+   //store each token to vector, delimiting by ',' or ' '
    int start = 0, len = 0, n = sb.str().length();
    for (int i = 0; i < n; i++){
       if (sb.str()[i] == ',' || sb.str()[i] == ' '){
@@ -84,3 +81,6 @@ bool Parser::hasNextLine() {
    return (stream.peek() != EOF);
 }
 
+string Parser::getName() {
+   return (this->name);
+}

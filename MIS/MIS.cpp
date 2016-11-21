@@ -43,7 +43,8 @@ void MIS::run(){
 
 	vector<string> args;
    ofstream file;
-   file.open("MIS.err");
+   string err_name = MIS_Parser->getName() + ".err";
+   file.open(err_name, ofstream::app);
 
 	if(MIS_Parser == NULL){
 		cout << "parser has not been created" << endl;

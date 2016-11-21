@@ -24,9 +24,11 @@ class Parser{
       bool hasNextLine();
       void insert(Label L);
       int getPosition();
+      std::string getName();
    private:
       std::ifstream stream;
       std::vector<Label> labels;
+      std::string name;
 };
 
 #endif

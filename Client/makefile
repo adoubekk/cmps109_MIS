@@ -6,4 +6,10 @@ Client: ${SRC_C}
 	g++ -std=gnu++14 ${SRC_C} -o Client
 
 clean:
-	rm -f Client Server
+	rm -f Client
+
+spotless: clean
+	rm -f *.err *.out
+
+.PHONY:
+	clean spotless

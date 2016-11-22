@@ -88,7 +88,7 @@ void MIS::run(){
             //char val;
             //MIS_variables["$mychar1"]->getValue(&val);
             //cout << val << endl;
-         }if(ThreadObj != NULL && KeywordObj == NULL){ 
+         } else if(ThreadObj != NULL && KeywordObj == NULL){ 
                cout << "keyObj is NULL, threadObj not NUll" << endl;  
                //ThreadObj = Thread_Factory[args[0]];
                if(args[0] == "THREAD_BEGIN"){

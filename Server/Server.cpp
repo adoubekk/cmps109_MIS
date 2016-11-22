@@ -1,5 +1,6 @@
 //Server.cpp
-//Sequential Server for MIS client server model
+//Multithreded Server for MIS client server model
+//Aaron Doubek-Kraft, adoubekk@ucsc.edu
 
 #include "../TCP/headers/TCPServerSocket.h"
 #include "../TCP/headers/TCPSocket.h"
@@ -8,24 +9,33 @@
 #include <stdlib.h>
 #include <fstream>
 #include <string>
+#include <thread>
 #define MAXSIZE 4096
 
 using namespace std;
 
-int main(){
+void socketThread(TCPSocket* Sockelstiltskin, int threadID);
 
-	char data[MAXSIZE]; //input file
+int main(){
    int threadID = 0;
-   char* out;
-   char* err;
 
    //initialize Server Socket
 	TCPServerSocket* ServerSock = new TCPServerSocket("", 5532, 10);
 	ServerSock->initializeSocket();
 
-   //get client socket connection
-	TCPSocket* Sockelstiltskin = ServerSock->getConnection();
-	Sockelstiltskin->readFromSocket(data, MAXSIZE);
+   while(true){
+      //get client socket connection
+      TCPSocket* newSock = ServerSock->getConnection();
+      //begin a new thread and run the socket inside of it
+      thread (socketThread,newSock,threadID++).detach(); //begin a new thread with this socket and detach it
+   }
+}
+
+void socketThread(TCPSocket* Sockelstiltskin, int threadID){
+   char *out, *err;
+   char data[MAXSIZE]; 
+   
+   Sockelstiltskin->readFromSocket(data, MAXSIZE);
    
    //copy input file raw data to a temporary local file to be read by MIS object
    string src_name = "server_copy" + std::to_string(threadID);
@@ -80,5 +90,4 @@ int main(){
    //write output and error to client socket
    Sockelstiltskin->writeToSocket(out, MAXSIZE);
    Sockelstiltskin->writeToSocket(err, MAXSIZE);
-   
 }

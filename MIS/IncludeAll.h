@@ -15,6 +15,8 @@
 #include "../Arithmetic_Operations/SETSC.h"
 #include "../Threading/Thread_Begin.h"
 #include "../Threading/Threading_Keyword.h"
+#include "../Threading/Lock.h"
+#include "../Threading/Unlock.h"
 #include "Out.h"
 #include "Sleep.h"
 #include "Keyword.h"

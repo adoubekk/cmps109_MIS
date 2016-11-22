@@ -6,7 +6,7 @@
 
 using namespace std;
 
-MIS::MIS(){
+MIS::MIS(): Thread_id(0){
    Keyword_Factory["NUMERIC"] = new Numeric();
    Keyword_Factory["REAL"] = new Real();
    Keyword_Factory["CHAR"] = new Char();
@@ -30,6 +30,8 @@ MIS::MIS(){
    Keyword_Factory["SLEEP"] = new Sleep();
 
    Thread_Factory["THREAD_BEGIN"] = new Thread_Begin();
+   Thread_Factory["LOCK"] = new Lock();
+   Thread_Factory["UNLOCK"] = new Unlock();
       
 };
 
@@ -61,6 +63,13 @@ void MIS::run(){
             
 
          }*/
+         // lock checking
+         for(int i = 0; i < args.size() ; i++){
+            while(Locked_Vars[args[i]] != 0){} // while variable is locked.
+         }
+         //m.lock();
+          // critical section
+
          if (args[0] == "VAR"){ 
             KeywordObj = Keyword_Factory[args[2]];
          } else {
@@ -85,12 +94,15 @@ void MIS::run(){
                if(args[0] == "THREAD_BEGIN"){
                   Thread_id++; // thread counter is used to ID the threads
                }
-               ThreadObj = ThreadObj->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, m, Threads, Thread_id, Locked_Vars);
+              
+               ThreadObj = ThreadObj->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, Threads, Thread_id, Locked_Vars);
                ThreadObj->execute();
+
 
          } else {
             file << "Keyword does not exist." << endl;
             }
+           // m.unlock();
          }
       }
    file.close();

@@ -1,5 +1,5 @@
-#ifndef LOCK_H
-#define LOCK_H
+#ifndef UNLOCK_H
+#define UNLOCK_H
 
 #include "../Type_Classes/Type.h"
 #include "../MIS/Keyword.h"
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class Lock : public Threading_Keyword{
+class Unlock : public Threading_Keyword{
 private:
 	vector<string> instructions; 
 	map<string, Type *> * Mis_Vars;

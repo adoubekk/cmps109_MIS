@@ -111,6 +111,11 @@ void MIS::run(){
       }
    file.close();
    if(Threads.size() != 0){
+    //  cout <<   Threads[0].joinable() << endl;
+   //cout <<  Threads[1].joinable() << endl;
    Threads[0].join(); // Test
+   Threads[1].join();
+   //cout <<   Threads[0].joinable() << endl;
+   //cout <<  Threads[1].joinable() << endl;
 }
 }

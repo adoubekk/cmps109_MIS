@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void Lock::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id,map<string, int>& Locked_Vars){
+void Lock::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars){
 	if (args.size() != 2){
 		// throw error
 	}else{
@@ -10,7 +10,7 @@ void Lock::initialize(vector<string> args, map<string, Type*>& variables, Parser
 	}
 }
 
-Threading_Keyword* Lock::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id,map<string, int>& Locked_Vars){
+Threading_Keyword* Lock::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars){
 	Threading_Keyword* Locker = new Lock();
 	Locker->initialize(args, variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, threads, thread_id, Locked_Vars);
 	return Locker;

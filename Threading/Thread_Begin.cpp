@@ -1,10 +1,12 @@
 #include "Thread_Begin.h"
 #include <iostream>
+#include <mutex>
+
 using namespace std;
 
 //ruuThread -- Thread Function
 // iterate through instructions, locking the variables map each time
-static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,map<string, Type*>& variables,mutex& m, vector<thread*>& threads, Parser* MIS_Parser, vector<string>& instructions, map<string, int>& Locked_Vars, int thread_id){
+static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,map<string, Type*>& variables,mutex& m, vector<thread>& threads, Parser* MIS_Parser, vector<string>& instructions, map<string, int>& Locked_Vars, int thread_id){
 
   //cout << "in run" << endl;
   vector<string> tempArgs;
@@ -28,55 +30,71 @@ static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Threadi
         }
       }
     }
-    //m.lock();
+    lock_guard<mutex> lock(m);
 
     if(instructions[i] == "END_INSTRUCTION"){
+      
      // cout << "tempArgs[0] " << tempArgs[0] << endl;
+      
       if (tempArgs[0] == "VAR"){ 
+          cout << "VAR" << endl;
             KeywordObj = Keyword_Factory[tempArgs[2]];
          } else {
+          cout << "else1" << endl;
             KeywordObj = Keyword_Factory[tempArgs[0]];
             ThreadObj = Thread_Factory[tempArgs[0]];
          }
+         
 
          if(KeywordObj != NULL){
             try{
-              
+              cout << "try" << endl;
+              cout << tempArgs[0] << endl;
+              //m.try_lock();
                KeywordObj = KeywordObj->clone(tempArgs, variables, MIS_Parser);
                KeywordObj->execute();
-               
+               //m.unlock();
                
             }
             catch(exception& e){
               // file << e.what() << endl;
             }
-         }if(ThreadObj != NULL && KeywordObj == NULL){ 
+
+         }
+         if(ThreadObj != NULL && KeywordObj == NULL){ 
+              //m.try_lock();
                cout << "keyObj is NULL, threadObj not NUll" << endl;  
                //ThreadObj = Thread_Factory[args[0]];
               /* if(args[0] == "THREAD_BEGIN"){     NO NESTED THREADING
                   Thread_id++; // thread counter is used to ID the threads
                }*/
-            
+              cout << "threadobj" << endl;
+              //m.try_lock();
                ThreadObj = ThreadObj->clone(tempArgs, variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, threads, thread_id, Locked_Vars);
                ThreadObj->execute();
-               
+              // m.unlock();
 
-         } else {
+         }
+         
+          else {
            // file << "Unidentified Keyword" << endl;
          }
          tempArgs.clear();
          continue; // go to next 
     }
-    
-    tempArgs.push_back(instructions[i]);
+    cout << "push back" << endl;
+    //m.try_lock();
     //m.unlock();
+
+    tempArgs.push_back(instructions[i]);
+    
 
   }
 } // thread function; pass references to the data and mutex, don't lock the mutex before looping.
 
 
 // Collect all instructions until THREAD_END
-void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id, map<string, int>& Locked_Vars){
+void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars){
   this->thread_id = thread_id;
   //cout << "in initialize" << endl; TESTING PURPOSES
 	while(MIS_Parser->hasNextLine()){
@@ -98,15 +116,15 @@ void Thread_Begin::initialize(vector<string> args, map<string, Type*>& variables
 
          
       }
-      thread Factory_Thread(runThread, ref(Keyword_Factory), ref(Thread_Factory), ref(variables), ref(m) , ref(threads), ref(MIS_Parser), ref(instructions), ref(Locked_Vars), ref(this->thread_id)); // start the factory work on the chunk of code
-      threads.push_back(&Factory_Thread); // will be used for barrier
-      Factory_Thread.join();
+      //thread Factory_Thread(runThread, ref(Keyword_Factory), ref(Thread_Factory), ref(variables), ref(m) , ref(threads), ref(MIS_Parser), ref(instructions), ref(Locked_Vars), ref(this->thread_id)); // start the factory work on the chunk of code
+      threads.emplace_back(runThread, ref(Keyword_Factory), ref(Thread_Factory), ref(variables), ref(m) , ref(threads), ref(MIS_Parser), ref(instructions), ref(Locked_Vars), ref(this->thread_id)); // will be used for barrier
+     // threads[0].join();
       
 
 }
 
 // Pass in regular data along with threading variables/structures
-Threading_Keyword* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id, map<string, int>& Locked_Vars){
+Threading_Keyword* Thread_Begin::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars){
 	Threading_Keyword* newThread = new Thread_Begin();
 	newThread->initialize(args, variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, threads, thread_id, Locked_Vars);
 	return newThread;

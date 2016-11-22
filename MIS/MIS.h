@@ -24,7 +24,7 @@ private:
 
 	map<string, Threading_Keyword*> Thread_Factory;
 	map<string, int > Locked_Vars;
-	vector<thread*> Threads;
+	vector<thread> Threads;
 	mutex m; // mutex to assure that threads don't change the same variables simultaneously 
 	int Thread_id;
 	bool resources_available;

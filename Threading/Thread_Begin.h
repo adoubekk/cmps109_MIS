@@ -26,9 +26,9 @@ private:
 public:
 	
 
-    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id, map<string, int>& Locked_Vars);
+    void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars);
 
-    Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id, map<string, int>& Locked_Vars);
+    Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars);
 
     void execute();
 

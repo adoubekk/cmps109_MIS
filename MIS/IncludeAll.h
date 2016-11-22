@@ -17,6 +17,8 @@
 #include "../Threading/Threading_Keyword.h"
 #include "../Threading/Lock.h"
 #include "../Threading/Unlock.h"
+#include "../Threading/Barrier.h"
+
 #include "Out.h"
 #include "Sleep.h"
 #include "Keyword.h"

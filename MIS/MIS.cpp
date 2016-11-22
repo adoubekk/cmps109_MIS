@@ -30,8 +30,9 @@ MIS::MIS(): Thread_id(0){
    Keyword_Factory["SLEEP"] = new Sleep();
 
    Thread_Factory["THREAD_BEGIN"] = new Thread_Begin();
-   Thread_Factory["LOCK"] = new Lock();
-   Thread_Factory["UNLOCK"] = new Unlock();
+   //Thread_Factory["LOCK"] = new Lock();
+   //Thread_Factory["UNLOCK"] = new Unlock();
+   //Thread_Factory["BARRIER"] = new Barrier();
       
 };
 
@@ -97,6 +98,9 @@ void MIS::run(){
               
                ThreadObj = ThreadObj->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, Threads, Thread_id, Locked_Vars);
                ThreadObj->execute();
+               cout << "Right before Threads[0]->join" << endl;
+               cout << "whats inside Threads[0]" << Threads.size() << endl;
+               //Threads[0].join();
 
 
          } else {
@@ -106,4 +110,7 @@ void MIS::run(){
          }
       }
    file.close();
+   if(Threads.size() != 0){
+   Threads[0].join(); // Test
+}
 }

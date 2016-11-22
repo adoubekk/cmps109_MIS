@@ -20,9 +20,9 @@ class Parser;
 
 class Threading_Keyword{
    public:
-      virtual Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id,map<string, int>& Locked_Vars) = 0;
+      virtual Threading_Keyword* clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars) = 0;
 
-      virtual void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id, map<string, int>& Locked_Vars) = 0;
+      virtual void initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id, map<string, int>& Locked_Vars) = 0;
       virtual void execute() = 0;
       
 };

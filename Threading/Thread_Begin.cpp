@@ -12,10 +12,10 @@ void doInstruction(map<string, Keyword*>& Keyword_Factory,map<string, Threading_
   Keyword* KeywordObj;
   Threading_Keyword* ThreadObj;
   if (tempArgs[0] == "VAR"){ 
-          cout << "VAR" << endl;
+          //cout << "VAR" << endl;
             KeywordObj = Keyword_Factory[tempArgs[2]];
          } else {
-          cout << "else1" << endl;
+          //cout << "else1" << endl;
             KeywordObj = Keyword_Factory[tempArgs[0]];
             ThreadObj = Thread_Factory[tempArgs[0]];
          }
@@ -23,8 +23,8 @@ void doInstruction(map<string, Keyword*>& Keyword_Factory,map<string, Threading_
 
          if(KeywordObj != NULL){
             try{
-              cout << "try" << endl;
-              cout << tempArgs[0] << endl;
+              //cout << "try" << endl;
+              //cout << tempArgs[0] << endl;
               //m.try_lock();
                KeywordObj = KeywordObj->clone(tempArgs, variables, MIS_Parser);
                KeywordObj->execute();
@@ -38,12 +38,12 @@ void doInstruction(map<string, Keyword*>& Keyword_Factory,map<string, Threading_
          }
          if(ThreadObj != NULL && KeywordObj == NULL){ 
               //m.try_lock();
-               cout << "keyObj is NULL, threadObj not NUll" << endl;  
+               //cout << "keyObj is NULL, threadObj not NUll" << endl;  
                //ThreadObj = Thread_Factory[args[0]];
               /* if(args[0] == "THREAD_BEGIN"){     NO NESTED THREADING
                   Thread_id++; // thread counter is used to ID the threads
                }*/
-              cout << "threadobj" << endl;
+              //cout << "threadobj" << endl;
               //m.try_lock();
                ThreadObj = ThreadObj->clone(tempArgs, variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, threads, thread_id, Locked_Vars);
                ThreadObj->execute();
@@ -81,7 +81,7 @@ static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Threadi
         locked_index = Locked_Vars[tempArgs[i]];
         if(locked_index != 0){
           if(locked_index != thread_id){ // if this thread doesn't have the lock
-            while(Locked_Vars[instructions[i]] != 0){
+            while(Locked_Vars[tempArgs[i]] != 0){
           // do nothing, wait
         }
       } // same var could be locked when jumping to another thread; this should be implemented by UNLOCK notifying a thread with the variable freed
@@ -136,7 +136,7 @@ static void runThread(map<string, Keyword*>& Keyword_Factory,map<string, Threadi
          tempArgs.clear();
          continue; // go to next 
     }
-    cout << "push back" << endl;
+    //cout << "push back" << endl;
     //m.try_lock();
     //m.unlock();
 

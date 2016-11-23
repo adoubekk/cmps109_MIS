@@ -30,9 +30,9 @@ MIS::MIS(): Thread_id(0){
    Keyword_Factory["SLEEP"] = new Sleep();
 
    Thread_Factory["THREAD_BEGIN"] = new Thread_Begin();
-   //Thread_Factory["LOCK"] = new Lock();
-   //Thread_Factory["UNLOCK"] = new Unlock();
-   //Thread_Factory["BARRIER"] = new Barrier();
+   Thread_Factory["LOCK"] = new Lock();
+   Thread_Factory["UNLOCK"] = new Unlock();
+   Thread_Factory["BARRIER"] = new Barrier();
       
 };
 
@@ -58,17 +58,12 @@ void MIS::run(){
          args = MIS_Parser->getNextLine();
          Keyword* KeywordObj;
          Threading_Keyword* ThreadObj;
-         /*if(args[0] == "THREAD_BEGIN"){ // pass thread vector and thread_id
-            Thread_Begin* myThread = new Thread_Begin();
-            myThread = myThread->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, m, Threads);
-            
-
-         }*/
+         
          // lock checking
          for(int i = 0; i < args.size() ; i++){
             while(Locked_Vars[args[i]] != 0){} // while variable is locked.
          }
-         //m.lock();
+         m.lock();
           // critical section
 
          if (args[0] == "VAR"){ 
@@ -80,8 +75,10 @@ void MIS::run(){
 
          if(KeywordObj != NULL){
             try{
+              // m.unlock();
                KeywordObj = KeywordObj->clone(args, MIS_variables, MIS_Parser);
                KeywordObj->execute();
+              // m.lock();
             }
             catch(exception & e){
                file << e.what() << endl;
@@ -90,32 +87,21 @@ void MIS::run(){
             //MIS_variables["$mychar1"]->getValue(&val);
             //cout << val << endl;
          } else if(ThreadObj != NULL && KeywordObj == NULL){ 
-               cout << "keyObj is NULL, threadObj not NUll" << endl;  
-               //ThreadObj = Thread_Factory[args[0]];
                if(args[0] == "THREAD_BEGIN"){
                   Thread_id++; // thread counter is used to ID the threads
                }
-              
+              m.unlock();
                ThreadObj = ThreadObj->clone(args, MIS_variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, Threads, Thread_id, Locked_Vars);
                ThreadObj->execute();
-               cout << "Right before Threads[0]->join" << endl;
-               cout << "whats inside Threads[0]" << Threads.size() << endl;
-               //Threads[0].join();
+               m.lock();
 
 
          } else {
             file << "Keyword does not exist." << endl;
             }
-           // m.unlock();
+            m.unlock();
          }
       }
    file.close();
-   if(Threads.size() != 0){
-    //  cout <<   Threads[0].joinable() << endl;
-   //cout <<  Threads[1].joinable() << endl;
-   Threads[0].join(); // Test
-   Threads[1].join();
-   //cout <<   Threads[0].joinable() << endl;
-   //cout <<  Threads[1].joinable() << endl;
-}
+   
 }

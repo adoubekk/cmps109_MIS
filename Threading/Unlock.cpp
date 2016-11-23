@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void Unlock::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id,map<string, int>& Locked_Vars){
+void Unlock::initialize(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars){
 	if (args.size() != 2){
 		// throw error
 	}
@@ -14,7 +14,7 @@ void Unlock::initialize(vector<string> args, map<string, Type*>& variables, Pars
 	}
 }
 
-Threading_Keyword* Unlock::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread*>& threads, int thread_id,map<string, int>& Locked_Vars){
+Threading_Keyword* Unlock::clone(vector<string> args, map<string, Type*>& variables, Parser* MIS_Parser, map<string, Keyword*>& Keyword_Factory,map<string, Threading_Keyword*>& Thread_Factory,mutex& m, vector<thread>& threads, int thread_id,map<string, int>& Locked_Vars){
 	Threading_Keyword* Unlocker = new Unlock();
 	Unlocker->initialize(args, variables, MIS_Parser, Keyword_Factory, Thread_Factory, m, threads, thread_id, Locked_Vars);
 	return Unlocker;

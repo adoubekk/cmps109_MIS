@@ -90,4 +90,7 @@ void socketThread(TCPSocket* Sockelstiltskin, int threadID){
    //write output and error to client socket
    Sockelstiltskin->writeToSocket(out, MAXSIZE);
    Sockelstiltskin->writeToSocket(err, MAXSIZE);
+   
+   free(out);
+   free(err);
 }
